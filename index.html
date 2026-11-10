@@ -12,8 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- QRCode.js for crisp Maroon QR Code generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
     <script>
         try {
@@ -137,20 +135,12 @@
             transform: translateY(0);
         }
 
-        /* HD Rose Petal Canvas placed perfectly behind the text */
+        /* HD Natural Rose Petal Canvas placed perfectly behind the text */
         #petal-canvas {
             position: fixed;
             inset: 0;
             pointer-events: none;
             z-index: 5;
-        }
-
-        #qr-code-box img,
-        #qr-code-box canvas {
-            margin: 0 auto;
-            display: block;
-            width: 100% !important;
-            height: 100% !important;
         }
 
         @keyframes gentleBounce {
@@ -184,12 +174,6 @@
             aria-label="Toggle Wedding Music"
             class="fixed bottom-5 right-5 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#68181F] text-[#FBF0D9] shadow-[0_6px_20px_rgba(104,24,31,0.55)] flex items-center justify-center hover:scale-105 active:scale-95 transition-transform border border-[#C8A97E]/40 cursor-pointer">
         <i id="speaker-icon" class="fa-solid fa-volume-high text-lg"></i>
-    </button>
-
-    <button onclick="openCustomizerModal()"
-            class="fixed top-3.5 left-3.5 z-50 px-3.5 py-2 rounded-full bg-[#68181F]/90 hover:bg-[#68181F] text-[#FBF0D9] font-sans text-[10px] tracking-[0.16em] uppercase font-medium shadow-lg backdrop-blur-sm flex items-center gap-2 border border-[#C8A97E]/40 transition-all">
-        <i class="fa-solid fa-wand-magic-sparkles text-xs"></i>
-        <span>Edit Invite / Images</span>
     </button>
 
     <main class="invite-stage" id="invite-root">
@@ -321,7 +305,7 @@
             </div>
         </section>
 
-        <!-- SECTION 4: VENUE (Celebration House) -->
+        <!-- SECTION 4: VENUE (Celebration House & Google Maps Satellite) -->
         <section class="parchment-section" id="sec-venue">
             <img id="bg-img-4" src="Traditional Floral Celebration House.png" alt="Venue" class="parchment-bg-img" onerror="handleImgFallback(this, 4)">
             <div class="section-content-layer top-[11%] px-6 sm:px-10">
@@ -335,11 +319,19 @@
                     </div>
                     <p id="view-venue-line1" class="font-subtext text-[1.05rem] text-[#2B1E12] font-semibold leading-snug mt-1">Shree Hari Farm</p>
                     <p id="view-venue-line2" class="font-subtext text-[0.9rem] text-[#8C6F4A] mt-1.5 font-medium">Vadodara, Gujarat</p>
-                    <div class="mt-6 bg-white p-3.5 rounded-2xl shadow-[0_12px_30px_rgba(0,0,0,0.08)] border border-[#8C6F4A]/20">
-                        <div id="qr-code-box" class="w-24 h-24 flex items-center justify-center"></div>
+                    
+                    <!-- NEW RECTANGULAR SATELLITE MAP -->
+                    <div class="mt-5 w-full max-w-[280px] sm:max-w-[320px] h-[150px] p-1.5 bg-white rounded-2xl shadow-[0_12px_30px_rgba(0,0,0,0.08)] border border-[#8C6F4A]/30">
+                        <iframe id="view-map-iframe"
+                            src="https://maps.google.com/maps?q=Shree+Hari+Farm+Vadodara+Gujarat&t=k&z=16&output=embed"
+                            class="w-full h-full rounded-[10px]"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy">
+                        </iframe>
                     </div>
-                    <p class="sub-header-tracked text-[0.62rem] mt-4 opacity-90">SCAN FOR LOCATION</p>
-                    <a id="view-map-link" href="https://maps.google.com/?q=Shree+Hari+Farm+Vadodara+Gujarat" target="_blank" rel="noopener noreferrer" class="mt-4 px-8 py-3.5 rounded-full bg-[#68181F] hover:bg-[#4D1016] text-[#FDFAF3] font-subtext font-bold text-[0.7rem] tracking-[0.2em] uppercase shadow-[0_8px_20px_rgba(104,24,31,0.3)] flex items-center gap-2 transition-all">
+                    
+                    <a id="view-map-link" href="https://maps.google.com/?q=Shree+Hari+Farm+Vadodara+Gujarat" target="_blank" rel="noopener noreferrer" class="mt-5 px-8 py-3.5 rounded-full bg-[#68181F] hover:bg-[#4D1016] text-[#FDFAF3] font-subtext font-bold text-[0.7rem] tracking-[0.2em] uppercase shadow-[0_8px_20px_rgba(104,24,31,0.3)] flex items-center gap-2 transition-all">
                         <i class="fa-solid fa-location-dot text-sm"></i>
                         <span>GET DIRECTIONS</span>
                     </a>
@@ -388,7 +380,7 @@
         </section>
     </main>
 
-    <!-- MODAL 1: RSVP VIA WHATSAPP -->
+    <!-- MODAL: RSVP VIA WHATSAPP -->
     <div id="rsvp-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/65 backdrop-blur-sm p-4">
         <div class="w-full max-w-md rounded-3xl bg-[#FBF0D9] border-2 border-[#C8A97E] p-6 sm:p-8 text-[#4E3920] shadow-2xl relative">
             <button onclick="closeRSVPModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-[#68181F]/10 text-[#68181F] flex items-center justify-center hover:bg-[#68181F] hover:text-white transition-all">
@@ -431,91 +423,6 @@
         </div>
     </div>
 
-    <!-- MODAL 2: CUSTOMIZER -->
-    <div id="customizer-modal" class="fixed inset-0 z-50 hidden justify-end bg-black/65 backdrop-blur-sm">
-        <div class="w-full max-w-lg bg-[#FBF0D9] border-l-2 border-[#C8A97E] h-full flex flex-col justify-between p-5 sm:p-7 overflow-y-auto text-[#3F2E1E] shadow-2xl">
-            <div>
-                <div class="flex items-center justify-between pb-3 border-b border-[#C8A97E]">
-                    <div>
-                        <span class="font-sans text-[10px] tracking-[0.24em] text-[#68181F] font-bold uppercase">Live Invitation Studio</span>
-                        <h3 class="main-maroon-title text-xl font-bold">Customize Your Details</h3>
-                    </div>
-                    <button onclick="closeCustomizerModal()" class="w-9 h-9 rounded-full bg-[#68181F]/10 text-[#68181F] flex items-center justify-center hover:bg-[#68181F] hover:text-white transition-all">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
-                <!-- Details Form -->
-                <div class="mt-4 space-y-3 font-sans text-xs">
-                    <div class="grid grid-cols-2 gap-3">
-                        <div>
-                            <label class="block uppercase tracking-wider text-[#6B5033] font-semibold mb-1">Groom Name</label>
-                            <input type="text" id="in-groom" class="w-full px-3 py-2 rounded-lg bg-white border border-[#C8A97E]">
-                        </div>
-                        <div>
-                            <label class="block uppercase tracking-wider text-[#6B5033] font-semibold mb-1">Bride Name</label>
-                            <input type="text" id="in-bride" class="w-full px-3 py-2 rounded-lg bg-white border border-[#C8A97E]">
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-4 gap-2">
-                        <div>
-                            <label class="block uppercase tracking-wider text-[#6B5033] font-semibold mb-1">Month</label>
-                            <input type="text" id="in-month" class="w-full px-2.5 py-2 rounded-lg bg-white border border-[#C8A97E]">
-                        </div>
-                        <div>
-                            <label class="block uppercase tracking-wider text-[#6B5033] font-semibold mb-1">Day</label>
-                            <input type="text" id="in-day-name" class="w-full px-2.5 py-2 rounded-lg bg-white border border-[#C8A97E]">
-                        </div>
-                        <div>
-                            <label class="block uppercase tracking-wider text-[#6B5033] font-semibold mb-1">Date</label>
-                            <input type="text" id="in-day-num" class="w-full px-2.5 py-2 rounded-lg bg-white border border-[#C8A97E]">
-                        </div>
-                        <div>
-                            <label class="block uppercase tracking-wider text-[#6B5033] font-semibold mb-1">Year</label>
-                            <input type="text" id="in-year" class="w-full px-2.5 py-2 rounded-lg bg-white border border-[#C8A97E]">
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-3">
-                        <div>
-                            <label class="block uppercase tracking-wider text-[#6B5033] font-semibold mb-1">Time</label>
-                            <input type="text" id="in-time" class="w-full px-3 py-2 rounded-lg bg-white border border-[#C8A97E]">
-                        </div>
-                        <div>
-                            <label class="block uppercase tracking-wider text-[#6B5033] font-semibold mb-1">Countdown Target</label>
-                            <input type="datetime-local" id="in-iso" class="w-full px-2.5 py-2 rounded-lg bg-white border border-[#C8A97E]">
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-3">
-                        <div>
-                            <label class="block uppercase tracking-wider text-[#6B5033] font-semibold mb-1">Venue Name</label>
-                            <input type="text" id="in-venue" class="w-full px-3 py-2 rounded-lg bg-white border border-[#C8A97E]">
-                        </div>
-                        <div>
-                            <label class="block uppercase tracking-wider text-[#6B5033] font-semibold mb-1">City &amp; State</label>
-                            <input type="text" id="in-city" class="w-full px-3 py-2 rounded-lg bg-white border border-[#C8A97E]">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block uppercase tracking-wider text-[#6B5033] font-semibold mb-1">Full Venue Address</label>
-                        <input type="text" id="in-addr1" class="w-full px-3 py-2 rounded-lg bg-white border border-[#C8A97E]">
-                    </div>
-                    <div>
-                        <label class="block uppercase tracking-wider text-[#6B5033] font-semibold mb-1">Google Maps Link</label>
-                        <input type="url" id="in-map-url" class="w-full px-3 py-2 rounded-lg bg-white border border-[#C8A97E]">
-                    </div>
-                    <div>
-                        <label class="block uppercase tracking-wider text-[#6B5033] font-semibold mb-1">WhatsApp RSVP Number</label>
-                        <input type="text" id="in-whatsapp" placeholder="919876543210" class="w-full px-3 py-2 rounded-lg bg-white border border-[#C8A97E]">
-                    </div>
-                </div>
-            </div>
-            <div class="pt-5 mt-5 border-t border-[#C8A97E] flex flex-col gap-2">
-                <button onclick="saveCustomInviteDetails()" class="w-full py-3 rounded-full bg-[#68181F] text-[#FBF0D9] font-sans text-xs font-bold tracking-[0.2em] uppercase shadow-lg hover:bg-[#4D1016]">
-                    Save &amp; Apply Changes
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- Toast Notification -->
     <div id="toast-banner" class="fixed top-5 right-5 z-50 hidden items-center gap-2.5 px-5 py-3 rounded-2xl bg-[#68181F] text-[#FBF0D9] font-sans text-xs shadow-2xl border border-[#C8A97E]">
         <i class="fa-solid fa-circle-check"></i>
@@ -541,13 +448,8 @@
             whatsapp: "919876543210"
         };
 
-        let inviteState;
-        try {
-            const stored = localStorage.getItem('rinkleHarshInviteState');
-            inviteState = stored ? JSON.parse(stored) : { ...defaultInviteState };
-        } catch (e) {
-            inviteState = { ...defaultInviteState };
-        }
+        // Customizer is removed, load directly from defaults
+        const inviteState = { ...defaultInviteState };
 
         function renderInviteView() {
             try {
@@ -566,40 +468,14 @@
                 document.getElementById('view-venue-line1').textContent = inviteState.addr1;
                 document.getElementById('view-venue-line2').textContent = inviteState.addr2;
                 document.getElementById('view-map-link').href = inviteState.mapUrl;
-
-                // Sync Inputs
-                document.getElementById('in-groom').value = inviteState.groom;
-                document.getElementById('in-bride').value = inviteState.bride;
-                document.getElementById('in-month').value = inviteState.month;
-                document.getElementById('in-day-name').value = inviteState.dayName;
-                document.getElementById('in-day-num').value = inviteState.dayNum;
-                document.getElementById('in-year').value = inviteState.year;
-                document.getElementById('in-time').value = inviteState.time;
-                document.getElementById('in-iso').value = inviteState.isoDate;
-                document.getElementById('in-venue').value = inviteState.venue;
-                document.getElementById('in-city').value = inviteState.city;
-                document.getElementById('in-addr1').value = inviteState.addr1;
-                document.getElementById('in-map-url').value = inviteState.mapUrl;
-                document.getElementById('in-whatsapp').value = inviteState.whatsapp;
-
-                generateMaroonQRCode(inviteState.mapUrl);
-            } catch (e) {}
-        }
-
-        function generateMaroonQRCode(url) {
-            const box = document.getElementById('qr-code-box');
-            if (!box) return;
-            box.innerHTML = '';
-            try {
-                if (typeof QRCode !== 'undefined') {
-                    new QRCode(box, {
-                        text: url || "https://maps.google.com",
-                        width: 128, height: 128,
-                        colorDark: "#68181F", colorLight: "#FAF8F5",
-                        correctLevel: QRCode.CorrectLevel.M
-                    });
+                
+                const mapFrame = document.getElementById('view-map-iframe');
+                if (mapFrame) {
+                    const query = encodeURIComponent(inviteState.venue + " " + inviteState.city);
+                    mapFrame.src = `https://maps.google.com/maps?q=${query}&t=k&z=16&output=embed`;
                 }
-            } catch(e) {}
+
+            } catch (e) {}
         }
 
         function handleImgFallback(imgEl, secNum) {
@@ -612,14 +488,6 @@
         }
 
         // --- 2. MODALS & FORMS ---
-        function openCustomizerModal() {
-            const m = document.getElementById('customizer-modal');
-            m.classList.remove('hidden'); m.classList.add('flex');
-        }
-        function closeCustomizerModal() {
-            const m = document.getElementById('customizer-modal');
-            m.classList.add('hidden'); m.classList.remove('flex');
-        }
         function openRSVPModal() {
             const m = document.getElementById('rsvp-modal');
             m.classList.remove('hidden'); m.classList.add('flex');
@@ -627,31 +495,6 @@
         function closeRSVPModal() {
             const m = document.getElementById('rsvp-modal');
             m.classList.add('hidden'); m.classList.remove('flex');
-        }
-
-        function saveCustomInviteDetails() {
-            inviteState.groom = document.getElementById('in-groom').value.trim() || "RINKLE";
-            inviteState.bride = document.getElementById('in-bride').value.trim() || "HARSH";
-            inviteState.month = document.getElementById('in-month').value.trim() || "DECEMBER";
-            inviteState.dayName = document.getElementById('in-day-name').value.trim() || "FRI";
-            inviteState.dayNum = document.getElementById('in-day-num').value.trim() || "04";
-            inviteState.year = document.getElementById('in-year').value.trim() || "2026";
-            inviteState.time = document.getElementById('in-time').value.trim() || "7:00 PM ONWARDS";
-            inviteState.isoDate = document.getElementById('in-iso').value || "2026-12-04T19:00";
-            inviteState.venue = document.getElementById('in-venue').value.trim() || "SHREE HARI FARM";
-            inviteState.city = document.getElementById('in-city').value.trim() || "VADODARA, GUJARAT";
-            inviteState.addr1 = document.getElementById('in-addr1').value.trim();
-            inviteState.mapUrl = document.getElementById('in-map-url').value.trim();
-            inviteState.whatsapp = document.getElementById('in-whatsapp').value.trim();
-
-            try {
-                localStorage.setItem('rinkleHarshInviteState', JSON.stringify(inviteState));
-            } catch(e) {}
-            
-            renderInviteView();
-            updateCountdownClock();
-            closeCustomizerModal();
-            showToast("Details updated!");
         }
 
         function sendWhatsAppRSVP(e) {
@@ -664,13 +507,6 @@
             const phone = (inviteState.whatsapp || '').replace(/\D/g, '');
             window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
             closeRSVPModal();
-        }
-
-        function showToast(msg) {
-            const banner = document.getElementById('toast-banner');
-            document.getElementById('toast-text').textContent = msg;
-            banner.classList.remove('hidden'); banner.classList.add('flex');
-            setTimeout(() => { banner.classList.add('hidden'); banner.classList.remove('flex'); }, 3000);
         }
 
         // --- 3. COUNTDOWN ---
@@ -736,15 +572,11 @@
             }
         }
 
-        // --- 5. HD IMAGE-BASED PETAL ENGINE ---
+        // --- 5. HD NATURAL CSS PETAL ENGINE ---
         const canvas = document.getElementById('petal-canvas');
         const ctx = canvas.getContext('2d');
         let petals = [];
         
-        const petalImg = new Image();
-        petalImg.src = 'Rose Petal.png';
-
-        // High-DPI (Retina) Canvas Fix for Mobile
         function resizePetalCanvas() {
             const dpr = window.devicePixelRatio || 1;
             canvas.width = window.innerWidth * dpr;
@@ -759,17 +591,19 @@
         function initPetals() {
             resizePetalCanvas();
             petals = [];
-            for (let i = 0; i < 15; i++) {
+            // Moderate amount: 12 petals
+            for (let i = 0; i < 12; i++) {
                 petals.push({
                     x: Math.random() * window.innerWidth, 
                     y: Math.random() * window.innerHeight,
-                    w: Math.random() * 14 + 18, 
-                    vx: (Math.random() - 0.5) * 0.3,
-                    vy: Math.random() * 0.6 + 0.3, 
+                    r: Math.random() * 4.5 + 4, 
+                    // Ultra-slow motion settings
+                    vx: (Math.random() - 0.5) * 0.2, 
+                    vy: Math.random() * 0.4 + 0.2,   
                     angle: Math.random() * Math.PI * 2,
-                    spin: (Math.random() - 0.5) * 0.02,
+                    spin: (Math.random() - 0.5) * 0.015,
                     flip: Math.random() * Math.PI,
-                    flipSpeed: (Math.random() - 0.5) * 0.03
+                    flipSpeed: (Math.random() - 0.5) * 0.015
                 });
             }
         }
@@ -782,19 +616,28 @@
                 p.angle += p.spin; 
                 p.flip += p.flipSpeed;
                 
-                if (p.y > window.innerHeight + 35) p.y = -35;
-                if (p.x < -35) p.x = window.innerWidth + 35;
-                if (p.x > window.innerWidth + 35) p.x = -35;
+                if (p.y > window.innerHeight + 30) p.y = -30;
+                if (p.x < -30) p.x = window.innerWidth + 30;
+                if (p.x > window.innerWidth + 30) p.x = -30;
                 
                 ctx.save(); 
                 ctx.translate(p.x, p.y); 
                 ctx.rotate(p.angle);
-                ctx.scale(Math.abs(Math.sin(p.flip)), 1); 
+                ctx.scale(Math.abs(Math.sin(p.flip)), 1); // 3D slow tumble
                 
-                if (petalImg.complete && petalImg.naturalHeight !== 0) {
-                    ctx.globalAlpha = 0.9;
-                    ctx.drawImage(petalImg, -p.w / 2, -p.w / 2, p.w, p.w);
-                }
+                // Draw Natural Petal Shape
+                ctx.beginPath();
+                ctx.moveTo(0, -p.r);
+                ctx.bezierCurveTo(p.r * 1.5, -p.r * 0.5, p.r * 1.5, p.r, 0, p.r * 1.2);
+                ctx.bezierCurveTo(-p.r * 1.5, p.r, -p.r * 1.5, -p.r * 0.5, 0, -p.r);
+                
+                // Rich, natural deep red gradient
+                let grad = ctx.createLinearGradient(0, -p.r, 0, p.r * 1.2);
+                grad.addColorStop(0, "rgba(220, 30, 50, 0.85)"); // Vibrant red
+                grad.addColorStop(1, "rgba(140, 15, 25, 0.75)"); // Dark maroon tip
+                
+                ctx.fillStyle = grad;
+                ctx.fill();
                 
                 ctx.restore();
             }
