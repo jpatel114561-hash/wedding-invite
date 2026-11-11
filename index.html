@@ -43,7 +43,7 @@
                             }
                         }
                     }
-                }
+                };
             }
         } catch (e) {
             console.warn("Tailwind config skipped:", e);
@@ -143,22 +143,16 @@
             z-index: 5;
         }
 
-        /* Hide Scrollbar for clean schedule look */
-        .hide-scroll::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scroll {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
 
         /* Beautiful Custom Ornamental Event Shape Plaque */
         .event-plaque {
             position: relative;
-            background: rgba(255, 255, 255, 0.88);
+            background: rgba(255, 255, 255, 0.9);
             border: 1.5px solid #C8A97E;
             border-radius: 12px 0 12px 0;
-            padding: 22px 12px; 
+            padding: 12px 6px; 
             text-align: center;
             backdrop-filter: blur(5px);
             box-shadow: 0 6px 16px rgba(104,24,31,0.08);
@@ -166,16 +160,40 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: transform 0.2s ease;
         }
         .event-plaque::after {
             content: '';
             position: absolute;
             inset: 3px;
-            border: 0.8px solid rgba(140, 111, 74, 0.4);
+            border: 0.8px solid rgba(140, 111, 74, 0.35);
             border-radius: 9px 0 9px 0;
             pointer-events: none;
         }
+
+        /* ROYAL EVENT PLAQUE FOR WEDDING CEREMONY WITH FIREWORKS */
+        .event-plaque-royal {
+            position: relative;
+            background: radial-gradient(circle at center, #8A242D 0%, #4D1016 100%);
+            border: 2px solid #C8A97E;
+            border-radius: 16px 0 16px 0;
+            padding: 28px 10px; 
+            text-align: center;
+            box-shadow: 0 12px 25px rgba(104,24,31,0.35);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .event-plaque-royal::after {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border: 1px solid rgba(200, 169, 126, 0.6);
+            border-radius: 11px 0 11px 0;
+            pointer-events: none;
+        }
+
         .diamond-icon {
             position: absolute;
             left: 50%;
@@ -189,6 +207,11 @@
         }
         .diamond-icon.top { top: -7.5px; }
         .diamond-icon.bottom { bottom: -7.5px; }
+        
+        .diamond-icon-royal {
+            background: #4D1016;
+            color: #FBF0D9;
+        }
 
         @keyframes gentleBounce {
             0%, 100% { transform: translateY(0); opacity: 0.75; }
@@ -201,49 +224,42 @@
 </head>
 <body>
 
-    <!-- HD Floating Magic Canvas (Petals & Gold Stardust) -->
     <canvas id="magic-canvas"></canvas>
 
-    <!-- FLOATING CONTROLS -->
-    <button id="audio-floating-btn"
-            onclick="toggleTraditionalMusic()"
-            aria-label="Toggle Wedding Music"
-            class="fixed bottom-5 right-5 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#68181F] text-[#FBF0D9] shadow-[0_6px_20px_rgba(104,24,31,0.55)] flex items-center justify-center hover:scale-105 active:scale-95 transition-transform border border-[#C8A97E]/40 cursor-pointer">
+    <button id="audio-floating-btn" onclick="toggleTraditionalMusic()" class="fixed bottom-5 right-5 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#68181F] text-[#FBF0D9] shadow-[0_6px_20px_rgba(104,24,31,0.55)] flex items-center justify-center hover:scale-105 active:scale-95 transition-transform border border-[#C8A97E]/40 cursor-pointer">
         <i id="speaker-icon" class="fa-solid fa-volume-high text-lg"></i>
     </button>
 
     <main class="invite-stage" id="invite-root">
         
-        <!-- =========================================================================
-             SECTION 1: HERO
-             ========================================================================= -->
+        <!-- SECTION 1: HERO -->
         <section class="parchment-section" id="sec-hero">
             <img id="bg-img-1" src="Watercolor Indian Wedding Feet on Parchment.png" alt="Hero" class="parchment-bg-img" onerror="handleImgFallback(this, 1)">
-            <div class="section-content-layer top-[43%] px-6">
+            <div class="section-content-layer top-[37%] px-6">
                 <div class="w-full flex flex-col items-center fade-up">
-                    <p class="sub-header-tracked mb-2" id="view-wedding-of-label">THE WEDDING OF</p>
+                    <p class="sub-header-tracked mb-2 text-center" id="view-wedding-of-label">THE WEDDING OF</p>
                     <div class="flex items-center justify-center gap-2.5 my-1 w-48">
                         <span class="flex-1 h-[1px] bg-[#8C6F4A]/50"></span>
                         <svg class="w-3 h-3 text-[#8C6F4A]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 20.5 C12 20.5 5 14 5 8.5 C5 6 7 4.5 9 4.5 C10.6 4.5 12 6 12 6 C12 6 13.4 4.5 15 4.5 C17 4.5 19 6 19 8.5 C19 14 12 20.5 12 20.5 Z"/></svg>
                         <span class="flex-1 h-[1px] bg-[#8C6F4A]/50"></span>
                     </div>
                     
-                    <h1 id="view-groom" class="main-maroon-title text-5xl sm:text-[3.2rem] mt-2 uppercase tracking-wide">RINKLE</h1>
+                    <h1 id="view-groom" class="main-maroon-title text-center text-5xl sm:text-[3.2rem] mt-2 uppercase tracking-wide">RINKLE</h1>
                     <div class="flex items-center justify-center gap-3 my-1 w-36">
                         <span class="flex-1 h-[0.8px] bg-[#8C6F4A]/70"></span>
                         <span class="font-heading italic text-3xl text-[#8C6F4A] leading-none">&amp;</span>
                         <span class="flex-1 h-[0.8px] bg-[#8C6F4A]/70"></span>
                     </div>
-                    <h1 id="view-bride" class="main-maroon-title text-5xl sm:text-[3.2rem] mb-3 uppercase tracking-wide">HARSH</h1>
+                    <h1 id="view-bride" class="main-maroon-title text-center text-5xl sm:text-[3.2rem] mb-3 uppercase tracking-wide">HARSH</h1>
                     
-                    <p class="sub-header-tracked text-[0.7rem] sm:text-[0.75rem] mt-1 opacity-90">ARE GETTING MARRIED</p>
+                    <p class="sub-header-tracked text-[0.7rem] sm:text-[0.75rem] text-center mt-1 opacity-90">ARE GETTING MARRIED</p>
                     <div class="flex items-center justify-center gap-2.5 my-3.5 w-48">
                         <span class="flex-1 h-[1px] bg-[#8C6F4A]/50"></span>
                         <svg class="w-3 h-3 text-[#8C6F4A]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 20.5 C12 20.5 5 14 5 8.5 C5 6 7 4.5 9 4.5 C10.6 4.5 12 6 12 6 C12 6 13.4 4.5 15 4.5 C17 4.5 19 6 19 8.5 C19 14 12 20.5 12 20.5 Z"/></svg>
                         <span class="flex-1 h-[1px] bg-[#8C6F4A]/50"></span>
                     </div>
                     
-                    <p id="view-month" class="sub-header-tracked text-[0.85rem] text-[#8C6F4A] mb-1.5 font-bold">DECEMBER</p>
+                    <p id="view-month" class="sub-header-tracked text-center text-[0.85rem] text-[#8C6F4A] mb-1.5 font-bold">DECEMBER</p>
                     <div class="flex items-center justify-center gap-4 my-2">
                         <span id="view-day-name" class="font-subtext text-sm tracking-[0.25em] text-[#68181F] font-bold uppercase w-14 text-right">FRI</span>
                         <span class="h-8 w-[1px] bg-[#8C6F4A]/70"></span>
@@ -251,35 +267,33 @@
                         <span class="h-8 w-[1px] bg-[#8C6F4A]/70"></span>
                         <span id="view-year" class="font-subtext text-sm tracking-[0.25em] text-[#68181F] font-bold uppercase w-14 text-left">2026</span>
                     </div>
-                    <p id="view-time" class="sub-header-tracked text-[0.75rem] text-[#8C6F4A] mt-2.5 font-bold">7:00 PM ONWARDS</p>
+                    <p id="view-time" class="sub-header-tracked text-center text-[0.75rem] text-[#8C6F4A] mt-2.5 font-bold">7:00 PM ONWARDS</p>
                     
                     <div class="mt-5 mb-1.5 text-[#8C6F4A]"><i class="fa-solid fa-location-dot text-lg"></i></div>
-                    <h2 id="view-hero-venue" class="main-maroon-title text-[1.25rem] sm:text-[1.45rem] font-bold tracking-[0.1em] uppercase">SHREE HARI FARM</h2>
-                    <p class="sub-header-tracked text-[0.7rem] text-[#8C6F4A] mt-1.5 opacity-95">VADODARA, GUJARAT</p>
+                    <h2 id="view-hero-venue" class="main-maroon-title text-center text-[1.25rem] sm:text-[1.45rem] font-bold tracking-[0.1em] uppercase">SHREE HARI FARM</h2>
+                    <p class="sub-header-tracked text-center text-[0.7rem] text-[#8C6F4A] mt-1.5 opacity-95">VADODARA, GUJARAT</p>
                     
-                    <div class="mt-6 flex flex-col items-center animate-scroll-hint opacity-80">
-                        <span class="font-subtext font-bold text-[0.6rem] tracking-[0.35em] text-[#8C6F4A] uppercase">SCROLL</span>
+                    <div class="mt-5 flex flex-col items-center animate-scroll-hint opacity-80">
+                        <span class="font-subtext font-bold text-center text-[0.6rem] tracking-[0.35em] text-[#8C6F4A] uppercase">SCROLL</span>
                         <i class="fa-solid fa-chevron-down text-[10px] text-[#8C6F4A] mt-1"></i>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- =========================================================================
-             SECTION 2: AUSPICIOUS INVITATION
-             ========================================================================= -->
+        <!-- SECTION 2: AUSPICIOUS INVITATION -->
         <section class="parchment-section" id="sec-invitation">
             <img id="bg-img-2" src="Traditional Indian Puja Arrangement.png" alt="Puja" class="parchment-bg-img" onerror="handleImgFallback(this, 2)">
             <div class="section-content-layer top-[14%] px-8 sm:px-12">
                 <div class="w-full flex flex-col items-center fade-up">
-                    <p class="sub-header-tracked mb-3 text-[0.7rem]">AUSPICIOUS INVITATION</p>
-                    <h2 id="view-invite-heading" class="main-maroon-title text-[1.85rem] sm:text-[2.35rem] uppercase leading-tight tracking-wide font-bold">DEAR FRIENDS &amp;<br>FAMILY</h2>
+                    <p class="sub-header-tracked text-center mb-3 text-[0.7rem]">AUSPICIOUS INVITATION</p>
+                    <h2 id="view-invite-heading" class="main-maroon-title text-center text-[1.85rem] sm:text-[2.35rem] uppercase leading-tight tracking-wide font-bold">DEAR FAMILY &amp;<br>FRIENDS</h2>
                     <div class="flex items-center justify-center gap-2.5 my-4 w-48">
                         <span class="flex-1 h-[1px] bg-[#8C6F4A]/50"></span>
                         <svg class="w-3.5 h-3.5 text-[#8C6F4A]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 20.5 C12 20.5 5 14 5 8.5 C5 6 7 4.5 9 4.5 C10.6 4.5 12 6 12 6 C12 6 13.4 4.5 15 4.5 C17 4.5 19 6 19 8.5 C19 14 12 20.5 12 20.5 Z"/></svg>
                         <span class="flex-1 h-[1px] bg-[#8C6F4A]/50"></span>
                     </div>
-                    <p id="view-invite-prose" class="font-subtext text-[1rem] text-[#3F2E1E] leading-[1.85] max-w-[340px] mt-1 font-semibold text-center">
+                    <p id="view-invite-prose" class="font-subtext text-center text-[1rem] text-[#3F2E1E] leading-[1.85] max-w-[340px] mt-1 font-semibold">
                         With the divine blessings of the Almighty and our ancestors, we cordially invite you and your family to celebrate the auspicious union of our children. Your presence and heartfelt blessings will make this sacred occasion truly memorable.
                     </p>
                     <div class="flex items-center justify-center gap-3 my-5 w-52">
@@ -287,124 +301,157 @@
                         <span class="w-1.5 h-1.5 rotate-45 bg-[#8C6F4A]"></span>
                         <span class="flex-1 h-[0.8px] bg-[#8C6F4A]/60"></span>
                     </div>
-                    <p class="sub-header-tracked text-[0.65rem] opacity-90">JOIN US IN CELEBRATION &amp; BLESSINGS</p>
+                    <p class="sub-header-tracked text-center text-[0.65rem] opacity-90">JOIN US IN CELEBRATION &amp; BLESSINGS</p>
                 </div>
             </div>
         </section>
 
-        <!-- =========================================================================
-             SECTION 3: TIMELINE (Perfectly bounds to container, no cropping!)
-             ========================================================================= -->
-        <section class="parchment-section" id="sec-schedule">
-            <img id="bg-img-3" src="Elegant Botanical Parchment Frame.png" alt="Timeline" class="parchment-bg-img" onerror="handleImgFallback(this, 3)">
+        <!-- SECTION 3: PRE-WEDDING FESTIVITIES (Dec 2 & 3 - Perfectly Aligned & Stacked) -->
+        <section class="parchment-section" id="sec-schedule-1">
+            <img id="bg-img-3" src="Elegant Botanical Parchment Frame.png" alt="Timeline 1" class="parchment-bg-img" onerror="handleImgFallback(this, 3)">
             
-            <!-- BOUNDED CONTAINER: w-full h-full ensures absolute precision across all browsers -->
-            <div class="absolute top-0 left-0 w-full h-full z-10 flex flex-col items-center pt-[9%] pb-[5%] px-3 pointer-events-auto">
+            <div class="absolute inset-0 w-full h-full z-10 flex flex-col items-center pt-[13%] pb-[2%] px-4 pointer-events-auto">
                 
                 <div class="w-full flex flex-col items-center shrink-0 fade-up">
-                    <p class="sub-header-tracked mb-1 text-[0.7rem]">TIMELINE OF EVENTS</p>
-                    <h2 class="main-maroon-title text-[1.75rem] sm:text-[2.2rem] uppercase tracking-wide font-bold">WEDDING SCHEDULE</h2>
+                    <p class="sub-header-tracked text-center mb-1 text-[0.7rem]">TIMELINE OF EVENTS</p>
+                    <!-- text-center applied to guarantee center alignment on wrapping text -->
+                    <h2 class="main-maroon-title text-center text-[1.4rem] sm:text-[1.7rem] uppercase tracking-wide font-bold leading-snug px-2">PRE-WEDDING FESTIVITIES</h2>
                     <div class="flex items-center justify-center gap-2.5 my-2 w-48">
                         <span class="flex-1 h-[1px] bg-[#8C6F4A]/50"></span>
                         <svg class="w-3.5 h-3.5 text-[#8C6F4A]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 20.5 C12 20.5 5 14 5 8.5 C5 6 7 4.5 9 4.5 C10.6 4.5 12 6 12 6 C12 6 13.4 4.5 15 4.5 C17 4.5 19 6 19 8.5 C19 14 12 20.5 12 20.5 Z"/></svg>
                         <span class="flex-1 h-[1px] bg-[#8C6F4A]/50"></span>
                     </div>
-                    <p class="font-subtext text-[0.85rem] text-[#3F2E1E] text-center max-w-[320px] leading-relaxed mt-1 font-semibold">
-                        We joyfully request your presence as we take the next step in our journey of love and commitment.
-                    </p>
                 </div>
 
-                <!-- SCROLLABLE LIST: min-h-0 prevents flex overflow clipping, pb-24 gives plenty of bottom space -->
-                <div class="flex-1 w-full max-w-[380px] overflow-y-auto hide-scroll pb-24 px-2 mt-4 pointer-events-auto min-h-0">
+                <div class="w-full max-w-[380px] flex flex-col items-center mt-2 fade-up">
                     
                     <!-- ================= DAY 1 ================= -->
-                    <div class="flex flex-col items-center justify-center mb-5 mt-2">
-                        <h3 class="font-heading text-[#68181F] text-[1.3rem] font-bold tracking-widest uppercase">Wednesday</h3>
-                        <p class="font-subtext text-[#8C6F4A] text-[0.8rem] font-bold tracking-[0.2em] uppercase mt-1">2nd December 2026</p>
-                        <div class="h-[1.5px] bg-[#8C6F4A]/60 w-24 mt-2.5"></div>
+                    <div class="flex flex-col items-center justify-center mb-3">
+                        <h3 class="font-heading text-center text-[#68181F] text-[1.1rem] font-bold tracking-widest uppercase">Wednesday</h3>
+                        <p class="font-subtext text-center text-[#8C6F4A] text-[0.7rem] font-bold tracking-[0.2em] uppercase mt-0.5">2nd December 2026</p>
+                        <div class="h-[1px] bg-[#8C6F4A]/60 w-20 mt-2"></div>
                     </div>
                     
-                    <div class="grid grid-cols-2 gap-3 mb-4">
-                        <div class="event-plaque">
+                    <!-- Ganesh Sthapana & Mandap Muhurat Separated in Grid -->
+                    <div class="w-full grid grid-cols-2 gap-3 mb-3">
+                        <div class="event-plaque w-full">
                             <span class="diamond-icon top">❖</span>
-                            <h4 class="font-heading italic text-[#68181F] text-[1.2rem] font-bold leading-tight mt-1">Ganesh Sthapana</h4>
-                            <p class="font-subtext text-[#8C6F4A] text-[0.75rem] tracking-[0.1em] font-bold uppercase mt-2.5">08:00 AM</p>
-                            <p class="font-subtext text-[#3F2E1E] text-[0.65rem] tracking-[0.05em] uppercase mt-1.5 font-bold">Our Residence</p>
+                            <h4 class="font-heading italic text-center text-[#68181F] text-[1.1rem] font-bold leading-tight mt-1">Ganesh<br>Sthapana</h4>
+                            <p class="font-subtext text-center text-[#8C6F4A] text-[0.65rem] tracking-[0.1em] font-bold uppercase mt-1.5">08:00 AM</p>
+                            <p class="font-subtext text-center text-[#3F2E1E] text-[0.55rem] tracking-[0.05em] uppercase mt-1 font-bold">Our Residence</p>
                             <span class="diamond-icon bottom">❖</span>
                         </div>
-                        <div class="event-plaque">
+                        <div class="event-plaque w-full">
                             <span class="diamond-icon top">❖</span>
-                            <h4 class="font-heading italic text-[#68181F] text-[1.2rem] font-bold leading-tight mt-1">Mandap Muhurat</h4>
-                            <p class="font-subtext text-[#8C6F4A] text-[0.75rem] tracking-[0.1em] font-bold uppercase mt-2.5">09:00 AM</p>
-                            <p class="font-subtext text-[#3F2E1E] text-[0.65rem] tracking-[0.05em] uppercase mt-1.5 font-bold">Our Residence</p>
+                            <h4 class="font-heading italic text-center text-[#68181F] text-[1.1rem] font-bold leading-tight mt-1">Mandap<br>Muhurat</h4>
+                            <p class="font-subtext text-center text-[#8C6F4A] text-[0.65rem] tracking-[0.1em] font-bold uppercase mt-1.5">09:00 AM</p>
+                            <p class="font-subtext text-center text-[#3F2E1E] text-[0.55rem] tracking-[0.05em] uppercase mt-1 font-bold">Our Residence</p>
                             <span class="diamond-icon bottom">❖</span>
                         </div>
                     </div>
                     
-                    <div class="w-full px-2 mb-8">
-                        <div class="event-plaque">
+                    <!-- Mehendi -->
+                    <div class="w-full px-2 mb-5">
+                        <div class="event-plaque w-full py-3">
                             <span class="diamond-icon top">❖</span>
-                            <h4 class="font-heading italic text-[#68181F] text-[1.5rem] font-bold leading-tight mt-1">Mehendi Ceremony</h4>
-                            <p class="font-subtext text-[#8C6F4A] text-[0.8rem] tracking-[0.1em] font-bold uppercase mt-2.5">01:00 PM</p>
-                            <p class="font-subtext text-[#3F2E1E] text-[0.7rem] tracking-[0.05em] uppercase mt-1.5 font-bold">Our Residence</p>
+                            <h4 class="font-heading italic text-center text-[#68181F] text-[1.3rem] font-bold leading-tight mt-1">Mehendi Ceremony</h4>
+                            <p class="font-subtext text-center text-[#8C6F4A] text-[0.75rem] tracking-[0.1em] font-bold uppercase mt-1.5">01:00 PM</p>
+                            <p class="font-subtext text-center text-[#3F2E1E] text-[0.65rem] tracking-[0.05em] uppercase mt-1 font-bold">Our Residence</p>
                             <span class="diamond-icon bottom">❖</span>
                         </div>
                     </div>
 
                     <!-- ================= DAY 2 ================= -->
-                    <div class="flex flex-col items-center justify-center mb-5">
-                        <h3 class="font-heading text-[#68181F] text-[1.3rem] font-bold tracking-widest uppercase">Thursday</h3>
-                        <p class="font-subtext text-[#8C6F4A] text-[0.8rem] font-bold tracking-[0.2em] uppercase mt-1">3rd December 2026</p>
-                        <div class="h-[1.5px] bg-[#8C6F4A]/60 w-24 mt-2.5"></div>
+                    <div class="flex flex-col items-center justify-center mb-3">
+                        <h3 class="font-heading text-center text-[#68181F] text-[1.1rem] font-bold tracking-widest uppercase">Thursday</h3>
+                        <p class="font-subtext text-center text-[#8C6F4A] text-[0.7rem] font-bold tracking-[0.2em] uppercase mt-0.5">3rd December 2026</p>
+                        <div class="h-[1px] bg-[#8C6F4A]/60 w-20 mt-2"></div>
                     </div>
                     
-                    <div class="grid grid-cols-2 gap-3 mb-8">
-                        <div class="event-plaque">
+                    <!-- Haldi & Sangeet -->
+                    <div class="w-full grid grid-cols-2 gap-3">
+                        <div class="event-plaque w-full">
                             <span class="diamond-icon top">❖</span>
-                            <h4 class="font-heading italic text-[#68181F] text-[1.35rem] font-bold leading-tight mt-1.5 mb-1">Haldi Rasam</h4>
-                            <p class="font-subtext text-[#8C6F4A] text-[0.75rem] tracking-[0.1em] font-bold uppercase mt-2.5">05:00 PM</p>
+                            <h4 class="font-heading italic text-center text-[#68181F] text-[1.15rem] font-bold leading-tight mt-1">Haldi<br>Rasam</h4>
+                            <p class="font-subtext text-center text-[#8C6F4A] text-[0.7rem] tracking-[0.1em] font-bold uppercase mt-1.5">05:00 PM</p>
                             <span class="diamond-icon bottom">❖</span>
                         </div>
-                        <div class="event-plaque">
+                        <div class="event-plaque w-full">
                             <span class="diamond-icon top">❖</span>
-                            <h4 class="font-heading italic text-[#68181F] text-[1.35rem] font-bold leading-tight mt-1.5 mb-1">Sangeet Sandhya</h4>
-                            <p class="font-subtext text-[#8C6F4A] text-[0.75rem] tracking-[0.1em] font-bold uppercase mt-2.5">07:00 PM</p>
+                            <h4 class="font-heading italic text-center text-[#68181F] text-[1.15rem] font-bold leading-tight mt-1">Sangeet<br>Sandhya</h4>
+                            <p class="font-subtext text-center text-[#8C6F4A] text-[0.7rem] tracking-[0.1em] font-bold uppercase mt-1.5">07:00 PM</p>
                             <span class="diamond-icon bottom">❖</span>
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: THE WEDDING DAY (Dec 4 Special Page) -->
+        <section class="parchment-section" id="sec-schedule-2">
+            <img id="bg-img-3b" src="Elegant Botanical Parchment Frame.png" alt="Timeline 2" class="parchment-bg-img" onerror="handleImgFallback(this, 3)">
+            
+            <div class="absolute inset-0 w-full h-full z-10 flex flex-col items-center pt-[15%] pb-[5%] px-4">
+                
+                <div class="w-full flex flex-col items-center shrink-0 fade-up">
+                    <p class="sub-header-tracked text-center mb-1 text-[0.7rem]">THE MAIN EVENT</p>
+                    <h2 class="main-maroon-title text-center text-[1.75rem] sm:text-[2.2rem] uppercase tracking-wide font-bold">THE WEDDING DAY</h2>
+                    <div class="flex items-center justify-center gap-2.5 my-2 w-48">
+                        <span class="flex-1 h-[1px] bg-[#8C6F4A]/50"></span>
+                        <svg class="w-3.5 h-3.5 text-[#8C6F4A]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 20.5 C12 20.5 5 14 5 8.5 C5 6 7 4.5 9 4.5 C10.6 4.5 12 6 12 6 C12 6 13.4 4.5 15 4.5 C17 4.5 19 6 19 8.5 C19 14 12 20.5 12 20.5 Z"/></svg>
+                        <span class="flex-1 h-[1px] bg-[#8C6F4A]/50"></span>
+                    </div>
+                </div>
+
+                <div class="w-full max-w-[380px] flex flex-col items-center mt-3 px-2 fade-up">
+                    
                     <!-- ================= DAY 3 ================= -->
-                    <div class="flex flex-col items-center justify-center mb-5">
-                        <h3 class="font-heading text-[#68181F] text-[1.3rem] font-bold tracking-widest uppercase">Friday</h3>
-                        <p class="font-subtext text-[#8C6F4A] text-[0.8rem] font-bold tracking-[0.2em] uppercase mt-1">4th December 2026</p>
-                        <div class="h-[1.5px] bg-[#8C6F4A]/60 w-24 mt-2.5"></div>
+                    <div class="flex flex-col items-center justify-center mb-5 mt-2">
+                        <h3 class="font-heading text-center text-[#68181F] text-[1.4rem] font-bold tracking-widest uppercase">Friday</h3>
+                        <p class="font-subtext text-center text-[#8C6F4A] text-[0.85rem] font-bold tracking-[0.2em] uppercase mt-1">4th December 2026</p>
+                        <div class="h-[1.5px] bg-[#8C6F4A]/60 w-28 mt-3"></div>
                     </div>
                     
-                    <div class="w-full px-2 mb-4">
-                        <div class="event-plaque">
+                    <!-- Grah Shanti -->
+                    <div class="w-full px-2 mb-6">
+                        <div class="event-plaque w-full py-4">
                             <span class="diamond-icon top">❖</span>
-                            <h4 class="font-heading italic text-[#68181F] text-[1.5rem] font-bold leading-tight mt-1">Grah Shanti</h4>
-                            <p class="font-subtext text-[#8C6F4A] text-[0.8rem] tracking-[0.1em] font-bold uppercase mt-2.5">08:30 AM</p>
-                            <p class="font-subtext text-[#3F2E1E] text-[0.7rem] tracking-[0.05em] uppercase mt-1.5 font-bold">Shree Hari Farm</p>
+                            <h4 class="font-heading italic text-center text-[#68181F] text-[1.5rem] font-bold leading-tight mt-1">Grah Shanti</h4>
+                            <p class="font-subtext text-center text-[#8C6F4A] text-[0.8rem] tracking-[0.1em] font-bold uppercase mt-2.5">08:30 AM</p>
+                            <p class="font-subtext text-center text-[#3F2E1E] text-[0.7rem] tracking-[0.05em] uppercase mt-1 font-bold">Shree Hari Farm</p>
                             <span class="diamond-icon bottom">❖</span>
                         </div>
                     </div>
 
-                    <div class="w-full px-1 mb-8">
-                        <div class="event-plaque border-[#68181F]/50 bg-gradient-to-r from-white/90 via-[#FBF0D9]/95 to-white/90 py-8 shadow-[0_6px_20px_rgba(104,24,31,0.15)]">
-                            <span class="diamond-icon top">❖</span>
-                            <h4 class="font-heading italic text-[#68181F] text-[1.8rem] font-bold leading-tight mt-1">Wedding Ceremony</h4>
-                            <p class="font-subtext text-[#8C6F4A] text-[0.85rem] tracking-[0.15em] font-bold uppercase mt-3.5">06:30 PM</p>
-                            <p class="font-subtext text-[#3F2E1E] text-[0.75rem] tracking-[0.05em] uppercase mt-2 font-bold">Shree Hari Farm</p>
-                            <span class="diamond-icon bottom">❖</span>
+                    <!-- ROYAL WEDDING PLAQUE WITH GOLD FIREWORKS -->
+                    <div class="w-full px-1 mb-6">
+                        <div class="event-plaque-royal w-full">
+                            <!-- Spinning Firework Effects -->
+                            <div class="absolute top-2 left-3 text-[#C8A97E] opacity-40 animate-[spin_6s_linear_infinite] text-4xl">✺</div>
+                            <div class="absolute bottom-2 right-3 text-[#C8A97E] opacity-40 animate-[spin_6s_linear_infinite_reverse] text-4xl">✺</div>
+                            <div class="absolute top-8 right-6 text-[#C8A97E] opacity-50 animate-pulse text-2xl">✷</div>
+                            <div class="absolute bottom-8 left-6 text-[#C8A97E] opacity-50 animate-pulse text-2xl" style="animation-delay: 1s;">✧</div>
+
+                            <span class="diamond-icon diamond-icon-royal top">❖</span>
+                            
+                            <!-- Content stacked cleanly above the fireworks -->
+                            <div class="relative z-10 w-full flex flex-col items-center">
+                                <h4 class="font-heading italic text-center text-[#FBF0D9] text-[2rem] font-bold leading-tight drop-shadow-md">Wedding Ceremony</h4>
+                                <p class="font-subtext text-center text-[#C8A97E] text-[0.9rem] tracking-[0.15em] font-bold uppercase mt-4">06:30 PM</p>
+                                <p class="font-subtext text-center text-[#FBF0D9] text-[0.75rem] tracking-[0.05em] uppercase mt-2 font-semibold">Shree Hari Farm</p>
+                            </div>
+                            
+                            <span class="diamond-icon diamond-icon-royal bottom">❖</span>
                         </div>
                     </div>
 
-                    <div class="text-center px-4 mb-8 mt-2">
-                        <p class="font-subtext text-[0.9rem] text-[#3F2E1E] font-semibold leading-[1.8] opacity-95">
-                            Your presence will add to the joy of this special day, and we would be honored to have you with us. We invite you to share in our happiness as we tie the knot and begin our new life together.
+                    <!-- Closing Prose -->
+                    <div class="text-center px-2 mt-2">
+                        <p class="font-subtext text-center text-[0.95rem] text-[#3F2E1E] font-semibold leading-[1.7] opacity-95">
+                            Your presence will add to the joy of this special day, and we would be honored to have you with us.
                         </p>
-                        <div class="mt-5 flex justify-center">
+                        <div class="mt-4 flex justify-center">
                             <div class="w-2 h-2 rotate-45 bg-[#8C6F4A]"></div>
                         </div>
                     </div>
@@ -413,23 +460,20 @@
             </div>
         </section>
 
-        <!-- =========================================================================
-             SECTION 4: VENUE (Updated to exact requested Address)
-             ========================================================================= -->
+        <!-- SECTION 5: VENUE (Exact Requested Address + No Satellite) -->
         <section class="parchment-section" id="sec-venue">
             <img id="bg-img-4" src="Traditional Floral Celebration House.png" alt="Venue" class="parchment-bg-img" onerror="handleImgFallback(this, 4)">
             <div class="section-content-layer top-[11%] px-6 sm:px-10">
                 <div class="w-full flex flex-col items-center fade-up">
-                    <p class="sub-header-tracked mb-2 text-[0.7rem]">CELEBRATION VENUE</p>
-                    <h2 id="view-venue-title" class="main-maroon-title text-[1.75rem] sm:text-[2.25rem] uppercase tracking-wide font-bold">SHREE HARI FARM</h2>
+                    <p class="sub-header-tracked text-center mb-2 text-[0.7rem]">CELEBRATION VENUE</p>
+                    <h2 id="view-venue-title" class="main-maroon-title text-center text-[1.75rem] sm:text-[2.25rem] uppercase tracking-wide font-bold">SHREE HARI FARM</h2>
                     <div class="flex items-center justify-center gap-2.5 my-3 w-48">
                         <span class="flex-1 h-[1px] bg-[#8C6F4A]/50"></span>
                         <svg class="w-3.5 h-3.5 text-[#8C6F4A]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 20.5 C12 20.5 5 14 5 8.5 C5 6 7 4.5 9 4.5 C10.6 4.5 12 6 12 6 C12 6 13.4 4.5 15 4.5 C17 4.5 19 6 19 8.5 C19 14 12 20.5 12 20.5 Z"/></svg>
                         <span class="flex-1 h-[1px] bg-[#8C6F4A]/50"></span>
                     </div>
                     
-                    <!-- Updated Exact Address Here -->
-                    <p id="view-venue-line2" class="font-subtext text-[0.8rem] text-[#3F2E1E] mt-2 font-bold max-w-[280px] text-center leading-[1.6]">
+                    <p id="view-venue-line2" class="font-subtext text-center text-[0.8rem] text-[#3F2E1E] mt-2 font-bold max-w-[280px] leading-[1.6]">
                         Near Lotus Plaza, Jaladarshan Township, Laxmipura, Gotri, Vadodara, Gujarat 390023
                     </p>
                     
@@ -451,15 +495,13 @@
             </div>
         </section>
 
-        <!-- =========================================================================
-             SECTION 5: COUNTDOWN
-             ========================================================================= -->
+        <!-- SECTION 6: COUNTDOWN -->
         <section class="parchment-section" id="sec-countdown">
             <img id="bg-img-5" src="Ornate Temple Wedding Countdown Background.png" alt="Countdown" class="parchment-bg-img" onerror="handleImgFallback(this, 5)">
             <div class="section-content-layer top-[12%] px-6 sm:px-10">
                 <div class="w-full flex flex-col items-center fade-up">
-                    <p class="sub-header-tracked mb-2 text-[0.7rem]">AWAITING THE SACRED UNION</p>
-                    <h2 class="main-maroon-title text-[1.5rem] sm:text-[1.95rem] uppercase tracking-wide font-bold">COUNTING DOWN THE DAYS</h2>
+                    <p class="sub-header-tracked text-center mb-2 text-[0.7rem]">AWAITING THE SACRED UNION</p>
+                    <h2 class="main-maroon-title text-center text-[1.5rem] sm:text-[1.95rem] uppercase tracking-wide font-bold">COUNTING DOWN THE DAYS</h2>
                     <div class="flex items-center justify-center gap-2.5 my-3 w-48">
                         <span class="flex-1 h-[1px] bg-[#8C6F4A]/50"></span>
                         <svg class="w-3.5 h-3.5 text-[#8C6F4A]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 20.5 C12 20.5 5 14 5 8.5 C5 6 7 4.5 9 4.5 C10.6 4.5 12 6 12 6 C12 6 13.4 4.5 15 4.5 C17 4.5 19 6 19 8.5 C19 14 12 20.5 12 20.5 Z"/></svg>
@@ -467,22 +509,22 @@
                     </div>
                     <div class="mt-4 flex items-center justify-center gap-2 w-full max-w-[320px]">
                         <div class="flex flex-col items-center flex-1">
-                            <span id="cd-days" class="font-heading text-[2.2rem] text-[#68181F] font-bold">--</span>
+                            <span id="cd-days" class="font-heading text-center text-[2.2rem] text-[#68181F] font-bold">--</span>
                             <span class="sub-header-tracked text-[0.6rem] mt-1.5">DAYS</span>
                         </div>
                         <span class="font-heading text-xl text-[#8C6F4A] -mt-4">:</span>
                         <div class="flex flex-col items-center flex-1">
-                            <span id="cd-hours" class="font-heading text-[2.2rem] text-[#68181F] font-bold">--</span>
+                            <span id="cd-hours" class="font-heading text-center text-[2.2rem] text-[#68181F] font-bold">--</span>
                             <span class="sub-header-tracked text-[0.6rem] mt-1.5">HOURS</span>
                         </div>
                         <span class="font-heading text-xl text-[#8C6F4A] -mt-4">:</span>
                         <div class="flex flex-col items-center flex-1">
-                            <span id="cd-mins" class="font-heading text-[2.2rem] text-[#68181F] font-bold">--</span>
+                            <span id="cd-mins" class="font-heading text-center text-[2.2rem] text-[#68181F] font-bold">--</span>
                             <span class="sub-header-tracked text-[0.6rem] mt-1.5">MINUTES</span>
                         </div>
                         <span class="font-heading text-xl text-[#8C6F4A] -mt-4">:</span>
                         <div class="flex flex-col items-center flex-1">
-                            <span id="cd-secs" class="font-heading text-[2.2rem] text-[#68181F] font-bold">--</span>
+                            <span id="cd-secs" class="font-heading text-center text-[2.2rem] text-[#68181F] font-bold">--</span>
                             <span class="sub-header-tracked text-[0.6rem] mt-1.5">SECONDS</span>
                         </div>
                     </div>
@@ -547,10 +589,6 @@
             year: "2026",
             time: "7:00 PM ONWARDS",
             isoDate: "2026-12-04T19:00",
-            venue: "SHREE HARI FARM",
-            city: "VADODARA, GUJARAT",
-            addr2: "Near Lotus Plaza, Jaladarshan Township, Laxmipura, Gotri, Vadodara, Gujarat 390023",
-            mapUrl: "https://maps.google.com/?q=Shree+Hari+Farm+Near+Lotus+Plaza,+Jaladarshan+Township,+Laxmipura,+Gotri,+Vadodara,+Gujarat+390023",
             whatsapp: "919876543210"
         };
 
@@ -665,7 +703,6 @@
             resizeCanvas();
             particles = [];
             
-            // 10 Delicate Rose Petals (Falling down)
             for (let i = 0; i < 10; i++) {
                 particles.push({
                     type: 'petal',
@@ -681,7 +718,6 @@
                 });
             }
 
-            // 30 Glowing Gold Stardust (Drifting slowly up/around)
             for (let i = 0; i < 30; i++) {
                 particles.push({
                     type: 'stardust',
@@ -747,7 +783,6 @@
             requestAnimationFrame(drawMagic);
         }
 
-        // --- 6. INITIALIZATION ---
         window.onload = function () {
             try {
                 updateCountdownClock();
