@@ -135,7 +135,7 @@
             transform: translateY(0);
         }
 
-        /* HD Magical Canvas */
+        /* HD Magical Canvas (Petals + Stardust) at z-5 */
         #magic-canvas {
             position: fixed;
             inset: 0;
@@ -146,7 +146,7 @@
         .hide-scroll::-webkit-scrollbar { display: none; }
         .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Normal Event Shape Plaque */
+        /* Beautiful Custom Ornamental Event Shape Plaque */
         .event-plaque {
             position: relative;
             background: rgba(255, 255, 255, 0.9);
@@ -237,55 +237,53 @@
     <main class="invite-stage" id="invite-root">
         
         <!-- =========================================================================
-             SECTION 1: HERO (RESTORED ORIGINAL PERFECT STRUCTURE)
+             SECTION 1: HERO (RESTORED LARGE TYPOGRAPHY + CORRECT PLACEMENT)
              ========================================================================= -->
         <section class="parchment-section" id="sec-hero">
             <img id="bg-img-1" src="Watercolor Indian Wedding Feet on Parchment.png" alt="Hero" class="parchment-bg-img" onerror="handleImgFallback(this, 1)">
             
-            <!-- Lock container top position cleanly below the painted feet -->
-            <div class="section-content-layer top-[38%] px-6">
+            <div class="section-content-layer top-[41%] px-6">
                 <div class="w-full flex flex-col items-center fade-up">
-                    <p class="font-subtext text-center text-[0.62rem] sm:text-[0.7rem] tracking-[0.25em] text-[#68181F] font-bold uppercase mb-2">|| Om Shree Ganeshay Namah ||</p>
-                    <p class="sub-header-tracked mb-1.5 text-center" id="view-wedding-of-label">SAVE THE DATE</p>
-                    
-                    <div class="flex items-center justify-center gap-2.5 w-48 mb-2">
+                    <p class="font-subtext text-center text-[0.62rem] sm:text-[0.7rem] tracking-[0.25em] text-[#68181F] font-bold uppercase mb-1">|| Om Shree Ganeshay Namah ||</p>
+                    <p class="sub-header-tracked mb-1 text-center" id="view-wedding-of-label">SAVE THE DATE</p>
+                    <div class="flex items-center justify-center gap-2.5 my-0.5 w-48">
                         <span class="flex-1 h-[1px] bg-[#8C6F4A]/50"></span>
                         <svg class="w-3 h-3 text-[#8C6F4A]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 20.5 C12 20.5 5 14 5 8.5 C5 6 7 4.5 9 4.5 C10.6 4.5 12 6 12 6 C12 6 13.4 4.5 15 4.5 C17 4.5 19 6 19 8.5 C19 14 12 20.5 12 20.5 Z"/></svg>
                         <span class="flex-1 h-[1px] bg-[#8C6F4A]/50"></span>
                     </div>
                     
-                    <h1 id="view-groom" class="main-maroon-title text-center text-[2.75rem] sm:text-[3.2rem] leading-none uppercase tracking-wide">RINKLE</h1>
-                    <div class="flex items-center justify-center gap-3 my-1 w-36">
+                    <h1 id="view-groom" class="main-maroon-title text-center text-5xl sm:text-[3.2rem] mt-1 uppercase tracking-wide">RINKLE</h1>
+                    <div class="flex items-center justify-center gap-3 my-0.5 w-36">
                         <span class="flex-1 h-[0.8px] bg-[#8C6F4A]/70"></span>
-                        <span class="font-heading italic text-2xl text-[#8C6F4A] leading-none">&amp;</span>
+                        <span class="font-heading italic text-3xl text-[#8C6F4A] leading-none">&amp;</span>
                         <span class="flex-1 h-[0.8px] bg-[#8C6F4A]/70"></span>
                     </div>
-                    <h1 id="view-bride" class="main-maroon-title text-center text-[2.75rem] sm:text-[3.2rem] leading-none uppercase tracking-wide">HARSH</h1>
+                    <h1 id="view-bride" class="main-maroon-title text-center text-5xl sm:text-[3.2rem] mb-1.5 uppercase tracking-wide">HARSH</h1>
                     
-                    <p class="sub-header-tracked text-[0.65rem] sm:text-[0.75rem] text-center mt-3 opacity-90">ARE GETTING MARRIED</p>
-                    <div class="flex items-center justify-center gap-2.5 my-2 w-48">
+                    <p class="sub-header-tracked text-[0.7rem] sm:text-[0.75rem] text-center mt-1 opacity-90">ARE GETTING MARRIED</p>
+                    <div class="flex items-center justify-center gap-2.5 my-1.5 w-48">
                         <span class="flex-1 h-[1px] bg-[#8C6F4A]/50"></span>
                         <svg class="w-3 h-3 text-[#8C6F4A]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 20.5 C12 20.5 5 14 5 8.5 C5 6 7 4.5 9 4.5 C10.6 4.5 12 6 12 6 C12 6 13.4 4.5 15 4.5 C17 4.5 19 6 19 8.5 C19 14 12 20.5 12 20.5 Z"/></svg>
                         <span class="flex-1 h-[1px] bg-[#8C6F4A]/50"></span>
                     </div>
                     
-                    <p id="view-month" class="sub-header-tracked text-center text-[0.8rem] text-[#8C6F4A] mb-1 font-bold">DECEMBER</p>
+                    <p id="view-month" class="sub-header-tracked text-center text-[0.85rem] text-[#8C6F4A] mb-1 font-bold">DECEMBER</p>
                     <div class="flex items-center justify-center gap-4 my-1">
-                        <span id="view-day-name" class="font-subtext text-xs tracking-[0.25em] text-[#68181F] font-bold uppercase w-12 text-right">FRI</span>
-                        <span class="h-6 w-[1px] bg-[#8C6F4A]/70"></span>
-                        <span id="view-day-num" class="font-heading text-[2.2rem] text-[#68181F] font-bold leading-none">04</span>
-                        <span class="h-6 w-[1px] bg-[#8C6F4A]/70"></span>
-                        <span id="view-year" class="font-subtext text-xs tracking-[0.25em] text-[#68181F] font-bold uppercase w-12 text-left">2026</span>
+                        <span id="view-day-name" class="font-subtext text-sm tracking-[0.25em] text-[#68181F] font-bold uppercase w-14 text-right">FRI</span>
+                        <span class="h-8 w-[1px] bg-[#8C6F4A]/70"></span>
+                        <span id="view-day-num" class="font-heading text-5xl text-[#68181F] font-bold leading-none">04</span>
+                        <span class="h-8 w-[1px] bg-[#8C6F4A]/70"></span>
+                        <span id="view-year" class="font-subtext text-sm tracking-[0.25em] text-[#68181F] font-bold uppercase w-14 text-left">2026</span>
                     </div>
-                    <p id="view-time" class="sub-header-tracked text-center text-[0.7rem] text-[#8C6F4A] mt-2 font-bold">7:00 PM ONWARDS</p>
+                    <p id="view-time" class="sub-header-tracked text-center text-[0.75rem] text-[#8C6F4A] mt-1.5 font-bold">7:00 PM ONWARDS</p>
                     
-                    <div class="mt-4 mb-0.5 text-[#8C6F4A]"><i class="fa-solid fa-location-dot text-[0.95rem]"></i></div>
-                    <h2 id="view-hero-venue" class="main-maroon-title text-center text-[1.15rem] sm:text-[1.35rem] font-bold tracking-[0.1em] uppercase">SHREE HARI FARM</h2>
-                    <p class="sub-header-tracked text-center text-[0.65rem] text-[#8C6F4A] mt-1 opacity-95">VADODARA, GUJARAT</p>
+                    <div class="mt-3 mb-1 text-[#8C6F4A]"><i class="fa-solid fa-location-dot text-lg"></i></div>
+                    <h2 id="view-hero-venue" class="main-maroon-title text-center text-[1.25rem] sm:text-[1.45rem] font-bold tracking-[0.1em] uppercase">SHREE HARI FARM</h2>
+                    <p class="sub-header-tracked text-center text-[0.7rem] text-[#8C6F4A] mt-1 opacity-95">VADODARA, GUJARAT</p>
                     
-                    <div class="mt-5 flex flex-col items-center animate-scroll-hint opacity-80">
-                        <span class="font-subtext font-bold text-center text-[0.55rem] tracking-[0.35em] text-[#8C6F4A] uppercase">SCROLL</span>
-                        <i class="fa-solid fa-chevron-down text-[9px] text-[#8C6F4A] mt-1"></i>
+                    <div class="mt-4 flex flex-col items-center animate-scroll-hint opacity-80">
+                        <span class="font-subtext font-bold text-center text-[0.6rem] tracking-[0.35em] text-[#8C6F4A] uppercase">SCROLL</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] text-[#8C6F4A] mt-1"></i>
                     </div>
                 </div>
             </div>
@@ -315,12 +313,17 @@
                         <span class="flex-1 h-[0.8px] bg-[#8C6F4A]/60"></span>
                     </div>
                     <p class="sub-header-tracked text-center text-[0.65rem] opacity-90">JOIN US IN CELEBRATION &amp; BLESSINGS</p>
+                    
+                    <div class="mt-4 flex flex-col items-center animate-scroll-hint opacity-80">
+                        <span class="font-subtext font-bold text-center text-[0.55rem] tracking-[0.35em] text-[#8C6F4A] uppercase">SCROLL</span>
+                        <i class="fa-solid fa-chevron-down text-[9px] text-[#8C6F4A] mt-1"></i>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- =========================================================================
-             SECTION 3: PRE-WEDDING FESTIVITIES 
+             SECTION 3: PRE-WEDDING FESTIVITIES
              ========================================================================= -->
         <section class="parchment-section" id="sec-schedule-1">
             <img id="bg-img-3" src="Elegant Botanical Parchment Frame.png" alt="Timeline 1" class="parchment-bg-img" onerror="handleImgFallback(this, 3)">
@@ -383,14 +386,21 @@
                             <span class="diamond-icon top">❖</span>
                             <h4 class="font-heading italic text-center text-[#68181F] text-[1.15rem] font-bold leading-tight mt-1">Haldi<br>Rasam</h4>
                             <p class="font-subtext text-center text-[#8C6F4A] text-[0.7rem] tracking-[0.1em] font-bold uppercase mt-1.5">05:00 PM</p>
+                            <p class="font-subtext text-center text-[#3F2E1E] text-[0.55rem] tracking-[0.05em] uppercase mt-1 font-bold">Our Residence</p>
                             <span class="diamond-icon bottom">❖</span>
                         </div>
                         <div class="event-plaque w-full">
                             <span class="diamond-icon top">❖</span>
                             <h4 class="font-heading italic text-center text-[#68181F] text-[1.15rem] font-bold leading-tight mt-1">Sangeet<br>Sandhya</h4>
                             <p class="font-subtext text-center text-[#8C6F4A] text-[0.7rem] tracking-[0.1em] font-bold uppercase mt-1.5">07:00 PM</p>
+                            <p class="font-subtext text-center text-[#3F2E1E] text-[0.55rem] tracking-[0.05em] uppercase mt-1 font-bold">Our Residence</p>
                             <span class="diamond-icon bottom">❖</span>
                         </div>
+                    </div>
+                    
+                    <div class="mt-4 flex flex-col items-center animate-scroll-hint opacity-80">
+                        <span class="font-subtext font-bold text-center text-[0.55rem] tracking-[0.35em] text-[#8C6F4A] uppercase">SCROLL</span>
+                        <i class="fa-solid fa-chevron-down text-[9px] text-[#8C6F4A] mt-1"></i>
                     </div>
 
                 </div>
@@ -462,6 +472,11 @@
                         </div>
                     </div>
 
+                    <div class="mt-4 flex flex-col items-center animate-scroll-hint opacity-80">
+                        <span class="font-subtext font-bold text-center text-[0.55rem] tracking-[0.35em] text-[#8C6F4A] uppercase">SCROLL</span>
+                        <i class="fa-solid fa-chevron-down text-[9px] text-[#8C6F4A] mt-1"></i>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -495,10 +510,16 @@
                         </iframe>
                     </div>
                     
-                    <a id="view-map-link" href="https://maps.google.com/?q=Shree+Hari+Farm+Near+Lotus+Plaza,+Jaladarshan+Township,+Laxmipura,+Gotri,+Vadodara,+Gujarat+390023" target="_blank" rel="noopener noreferrer" class="mt-5 px-8 py-3.5 rounded-full bg-[#68181F] hover:bg-[#4D1016] text-[#FDFAF3] font-subtext font-bold text-[0.75rem] tracking-[0.2em] uppercase shadow-[0_8px_20px_rgba(104,24,31,0.3)] flex items-center gap-2 transition-all">
+                    <!-- Fixed Hover Bug: Active class only to ensure one-tap works flawlessly on iOS -->
+                    <a id="view-map-link" href="https://maps.google.com/?q=Shree+Hari+Farm+Near+Lotus+Plaza,+Jaladarshan+Township,+Laxmipura,+Gotri,+Vadodara,+Gujarat+390023" target="_blank" rel="noopener noreferrer" class="mt-5 px-8 py-3.5 rounded-full bg-[#68181F] text-[#FDFAF3] font-subtext font-bold text-[0.75rem] tracking-[0.2em] uppercase shadow-[0_8px_20px_rgba(104,24,31,0.3)] flex items-center gap-2 active:scale-95 cursor-pointer">
                         <i class="fa-solid fa-location-dot text-sm"></i>
                         <span>GET DIRECTIONS</span>
                     </a>
+
+                    <div class="mt-4 flex flex-col items-center animate-scroll-hint opacity-80">
+                        <span class="font-subtext font-bold text-center text-[0.55rem] tracking-[0.35em] text-[#8C6F4A] uppercase">SCROLL</span>
+                        <i class="fa-solid fa-chevron-down text-[9px] text-[#8C6F4A] mt-1"></i>
+                    </div>
                 </div>
             </div>
         </section>
@@ -664,7 +685,7 @@
                 const events = ['click', 'touchstart', 'scroll', 'mousemove', 'keydown'];
                 events.forEach(e => document.removeEventListener(e, attemptAutoplay));
             }).catch((e) => {
-                console.log("Browser blocking audio until user interacts.");
+                console.log("Browser blocking audio until user interacts. Awaiting tap/scroll.");
             });
         }
 
@@ -686,7 +707,7 @@
             }
         }
 
-        // Extremely aggressive interaction unlockers
+        // Add aggressive interaction unlockers to force playback the moment the user touches the screen
         const startEvents = ['click', 'touchstart', 'scroll', 'mousemove', 'keydown'];
         startEvents.forEach(e => document.addEventListener(e, attemptAutoplay, { passive: true }));
 
@@ -797,6 +818,7 @@
                 initMagic();
                 drawMagic();
                 
+                // Attempt to play music as soon as the page loads
                 attemptAutoplay();
                 
                 window.addEventListener('resize', () => {
