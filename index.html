@@ -100,6 +100,16 @@
             100% { box-shadow: 0 0 0 0 rgba(104,24,31, 0); }
         }
 
+        /* --- GOLDEN GLOW EFFECT FOR OPEN BUTTON --- */
+        .animate-gold-glow {
+            animation: goldPulseGlow 2s infinite;
+        }
+        @keyframes goldPulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(200, 169, 126, 0.8), 0 0 20px rgba(200, 169, 126, 0.6); }
+            50% { box-shadow: 0 0 0 15px rgba(200, 169, 126, 0), 0 0 40px rgba(200, 169, 126, 0.9); }
+            100% { box-shadow: 0 0 0 0 rgba(200, 169, 126, 0), 0 0 20px rgba(200, 169, 126, 0.6); }
+        }
+
         /* --- WATERFALL STAGGER DELAYS --- */
         .delay-100 { transition-delay: 100ms; }
         .delay-200 { transition-delay: 200ms; }
@@ -301,10 +311,10 @@
                 With the divine blessings of the Almighty and our ancestors, we joyfully invite you to share in our happiness.
             </p>
             
-            <button onclick="openInvitation()" class="group relative px-10 py-4 bg-gradient-to-r from-[#68181F] via-[#8A242D] to-[#68181F] text-[#FBF0D9] border border-[#8C6F4A]/50 rounded-full font-subtext font-bold text-[0.75rem] tracking-[0.2em] uppercase transition-all hover:scale-105 active:scale-95 animate-pulse-glow shadow-[0_0_25px_rgba(104,24,31,0.7)] cursor-pointer">
-                <span class="text-[#8C6F4A] shimmer-gold mr-2 text-xs">❖</span>
+            <button onclick="openInvitation()" class="group relative px-12 py-5 bg-gradient-to-r from-[#68181F] via-[#8A242D] to-[#68181F] text-[#FBF0D9] border-2 border-[#C8A97E] rounded-full font-subtext font-bold text-[0.85rem] tracking-[0.2em] uppercase transition-all hover:scale-110 active:scale-95 animate-gold-glow cursor-pointer">
+                <span class="text-[#8C6F4A] shimmer-gold mr-3 text-sm">❖</span>
                 Open Invitation
-                <span class="text-[#8C6F4A] shimmer-gold ml-2 text-xs">❖</span>
+                <span class="text-[#8C6F4A] shimmer-gold ml-3 text-sm">❖</span>
             </button>
             
         </div>
