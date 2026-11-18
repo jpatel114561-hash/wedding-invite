@@ -279,55 +279,14 @@
 </head>
 <body>
 
-    <!-- TAP TO OPEN OVERLAY (Rich & Divine Royal Envelope) -->
-    <div id="envelope-screen" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#2A1812] overflow-hidden">
-        
-        <!-- Royal Double Border Frame -->
-        <div class="absolute inset-4 sm:inset-6 border-[1.5px] border-[#8C6F4A]/40 rounded-2xl pointer-events-none flex items-center justify-center">
-            <div class="absolute inset-2 border border-[#8C6F4A]/20 rounded-xl pointer-events-none"></div>
-        </div>
-        
-        <!-- Ornate Corner Accents -->
-        <div class="absolute top-8 left-8 text-[#8C6F4A]/50 text-xl pointer-events-none">✺</div>
-        <div class="absolute top-8 right-8 text-[#8C6F4A]/50 text-xl pointer-events-none">✺</div>
-        <div class="absolute bottom-8 left-8 text-[#8C6F4A]/50 text-xl pointer-events-none">✺</div>
-        <div class="absolute bottom-8 right-8 text-[#8C6F4A]/50 text-xl pointer-events-none">✺</div>
-
-        <div class="relative z-10 flex flex-col items-center px-6 text-center">
-            
-            <p class="font-subtext text-[#8C6F4A] text-[0.7rem] sm:text-[0.75rem] tracking-[0.25em] uppercase mb-6 font-bold">|| Shree Ganeshay Namah ||</p>
-            
-            <p class="font-subtext text-[#FBF0D9] text-[0.65rem] tracking-[0.3em] uppercase mb-3 opacity-80">The Wedding Of</p>
-            
-            <span class="font-heading italic text-5xl sm:text-6xl text-[#FBF0D9] mb-4 drop-shadow-lg">Rinkle <span class="text-[#8C6F4A] shimmer-gold text-4xl">&amp;</span> Harsh</span>
-            
-            <div class="flex items-center justify-center gap-3 my-4 w-56">
-                <span class="flex-1 h-[1px] bg-[#8C6F4A]/50"></span>
-                <span class="w-2 h-2 rotate-45 bg-[#8C6F4A] shimmer-gold"></span>
-                <span class="flex-1 h-[1px] bg-[#8C6F4A]/50"></span>
-            </div>
-            
-            <p class="font-subtext text-[#8C6F4A] text-[0.85rem] sm:text-[0.95rem] leading-[1.8] max-w-[280px] mb-12 opacity-95 italic">
-                With the divine blessings of the Almighty and our ancestors, we joyfully invite you to share in our happiness.
-            </p>
-            
-            <button onclick="openInvitation()" class="group relative px-8 py-3.5 sm:px-10 sm:py-4 bg-gradient-to-r from-[#68181F] via-[#8A242D] to-[#68181F] text-[#FBF0D9] border-2 border-[#C8A97E] rounded-full font-subtext font-bold text-[0.75rem] sm:text-[0.8rem] tracking-[0.2em] uppercase transition-all hover:scale-105 active:scale-95 animate-gold-glow cursor-pointer">
-                <span class="text-[#8C6F4A] shimmer-gold mr-2 text-xs sm:text-sm">❖</span>
-                Open Invitation
-                <span class="text-[#8C6F4A] shimmer-gold ml-2 text-xs sm:text-sm">❖</span>
-            </button>
-            
-        </div>
-    </div>
-
     <!-- BACKGROUND AUDIO PLAYER -->
-    <audio id="bg-music" loop preload="auto" src="wedding-music.mp3"></audio>
+    <audio id="bg-music" loop preload="auto" src="wedding-music.mp3" autoplay></audio>
 
     <canvas id="magic-canvas"></canvas>
 
-    <!-- FLOATING CONTROLS -->
-    <button id="audio-floating-btn" onclick="toggleMusic()" class="fixed bottom-5 right-5 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#68181F] text-[#FBF0D9] shadow-[0_6px_20px_rgba(104,24,31,0.55)] flex items-center justify-center hover:scale-105 active:scale-95 transition-transform border border-[#C8A97E]/40 cursor-pointer hidden">
-        <i id="speaker-icon" class="fa-solid fa-volume-high text-lg animate-pulse"></i>
+    <!-- FLOATING CONTROLS (Made visible by default since the envelope is removed) -->
+    <button id="audio-floating-btn" onclick="toggleMusic()" class="fixed bottom-5 right-5 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#68181F] text-[#FBF0D9] shadow-[0_6px_20px_rgba(104,24,31,0.55)] flex items-center justify-center hover:scale-105 active:scale-95 transition-transform border border-[#C8A97E]/40 cursor-pointer">
+        <i id="speaker-icon" class="fa-solid fa-volume-xmark text-lg opacity-75"></i>
     </button>
 
     <main class="invite-stage" id="invite-root">
@@ -379,7 +338,7 @@
                         <span id="view-year" class="font-subtext text-sm tracking-[0.25em] text-[#68181F] font-bold uppercase w-14 text-left">2026</span>
                     </div>
                     
-                    <p id="view-time" class="sub-header-tracked text-center text-[0.75rem] text-[#8C6F4A] mt-1.5 font-bold fade-up delay-700">7:00 PM ONWARDS</p>
+                    <p id="view-time" class="sub-header-tracked text-center text-[0.75rem] text-[#8C6F4A] mt-1.5 font-bold fade-up delay-700">6:30 PM ONWARDS</p>
                     
                     <div class="mt-3 mb-1 text-[#8C6F4A] fade-up delay-800"><i class="fa-solid fa-location-dot text-lg"></i></div>
                     <h2 id="view-hero-venue" class="main-maroon-title text-center text-[1.25rem] sm:text-[1.45rem] font-bold tracking-[0.1em] uppercase fade-up delay-800">SHREE HARI FARM</h2>
@@ -734,22 +693,6 @@
             imgEl.src = "data:image/svg+xml;utf8," + encodeURIComponent(svgParchment);
         }
 
-        // --- ENVELOPE OPEN FUNCTION ---
-        function openInvitation() {
-            const envelope = document.getElementById('envelope-screen');
-            envelope.classList.add('open');
-            
-            const music = document.getElementById('bg-music');
-            const icon = document.getElementById('speaker-icon');
-            const audioBtn = document.getElementById('audio-floating-btn');
-            
-            // This direct user click perfectly bypasses browser autoplay blockers!
-            music.play().then(() => {
-                icon.className = 'fa-solid fa-volume-high text-lg animate-pulse';
-                audioBtn.classList.remove('hidden');
-            }).catch(e => console.log("Audio play failed:", e));
-        }
-
         function toggleMusic() {
             const music = document.getElementById('bg-music');
             const icon = document.getElementById('speaker-icon');
@@ -760,7 +703,7 @@
             } else {
                 music.play().then(() => {
                     icon.className = 'fa-solid fa-volume-high text-lg animate-pulse';
-                });
+                }).catch(e => console.log("Audio play failed:", e));
             }
         }
 
@@ -916,6 +859,34 @@
                     entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
                 }, { threshold: 0.12 });
                 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+                
+                // AUDIO AUTOPLAY LOGIC
+                const music = document.getElementById('bg-music');
+                const icon = document.getElementById('speaker-icon');
+                let audioUnlocked = false;
+
+                function playMusicOnInteraction() {
+                    if (audioUnlocked) return;
+                    music.play().then(() => {
+                        audioUnlocked = true;
+                        icon.className = 'fa-solid fa-volume-high text-lg animate-pulse';
+                        // Remove listeners once successfully playing
+                        window.removeEventListener('scroll', playMusicOnInteraction);
+                        window.removeEventListener('touchstart', playMusicOnInteraction);
+                        window.removeEventListener('click', playMusicOnInteraction);
+                    }).catch((e) => {
+                        console.log("Autoplay blocked. Waiting for user interaction.");
+                    });
+                }
+
+                // Attempt to play immediately on load
+                playMusicOnInteraction();
+
+                // If blocked, wait for the user to scroll, tap, or slide
+                window.addEventListener('scroll', playMusicOnInteraction, { passive: true });
+                window.addEventListener('touchstart', playMusicOnInteraction, { passive: true });
+                window.addEventListener('click', playMusicOnInteraction, { passive: true });
+                
             } catch (e) {}
         };
     </script>
