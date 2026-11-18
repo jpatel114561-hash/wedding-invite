@@ -230,17 +230,60 @@
             animation: gentleBounce 2.2s infinite ease-in-out;
         }
 
-        /* Golden Glow Behind Map */
+        /* Clickable Pulse Ring & Glow Behind Map and RSVP Button */
+        @keyframes clickableRingPulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            75%, 100% {
+                transform: scale(1.09, 1.16);
+                opacity: 0;
+            }
+        }
+
         @keyframes mapGlow {
             0%, 100% {
-                box-shadow: 0 0 14px rgba(200, 169, 126, 0.55), 0 0 28px rgba(140, 111, 74, 0.28);
+                box-shadow: 0 6px 20px rgba(104, 24, 31, 0.22), 0 0 18px rgba(200, 169, 126, 0.75), 0 0 34px rgba(140, 111, 74, 0.4);
             }
             50% {
-                box-shadow: 0 0 24px rgba(200, 169, 126, 0.9), 0 0 46px rgba(200, 169, 126, 0.45);
+                box-shadow: 0 10px 28px rgba(104, 24, 31, 0.36), 0 0 30px rgba(200, 169, 126, 1), 0 0 54px rgba(200, 169, 126, 0.65);
             }
         }
         .animate-map-glow {
-            animation: mapGlow 2.4s ease-in-out infinite;
+            animation: mapGlow 2.2s ease-in-out infinite;
+        }
+        .animate-map-glow::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 18px;
+            border: 2px solid rgba(104, 24, 31, 0.45);
+            box-shadow: 0 0 16px rgba(200, 169, 126, 0.85);
+            pointer-events: none;
+            animation: clickableRingPulse 2.2s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
+        }
+
+        @keyframes rsvpGlow {
+            0%, 100% {
+                box-shadow: 0 4px 16px rgba(104, 24, 31, 0.25), 0 0 14px rgba(200, 169, 126, 0.65), 0 0 26px rgba(140, 111, 74, 0.3);
+            }
+            50% {
+                box-shadow: 0 6px 24px rgba(104, 24, 31, 0.45), 0 0 24px rgba(200, 169, 126, 0.95), 0 0 42px rgba(200, 169, 126, 0.55);
+            }
+        }
+        .animate-rsvp-glow {
+            animation: rsvpGlow 2.2s ease-in-out infinite;
+        }
+        .animate-rsvp-glow::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 9999px;
+            border: 2px solid rgba(104, 24, 31, 0.5);
+            box-shadow: 0 0 14px rgba(200, 169, 126, 0.85);
+            pointer-events: none;
+            animation: clickableRingPulse 2.2s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
         }
     </style>
 </head>
@@ -523,7 +566,7 @@
                     </p>
                     
                     <!-- Glowing Map Card with Full Clickable Overlay -->
-                    <div class="relative mt-5 w-full max-w-[280px] sm:max-w-[320px] h-[160px] p-1.5 bg-white rounded-2xl border-2 border-[#C8A97E] animate-map-glow">
+                    <div class="relative mt-5 w-full max-w-[280px] sm:max-w-[320px] h-[160px] p-1.5 bg-white rounded-2xl border-2 border-[#C8A97E] animate-map-glow transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]">
                         <iframe id="view-map-iframe"
                             src="https://maps.google.com/maps?q=Shree+Hari+Farm+Near+Lotus+Plaza,+Jaladarshan+Township,+Laxmipura,+Gotri,+Vadodara,+Gujarat+390023&t=m&z=15&output=embed"
                             class="w-full h-full rounded-[10px] pointer-events-none"
@@ -582,7 +625,7 @@
                             <span class="sub-header-tracked text-[0.6rem] mt-1.5">SECONDS</span>
                         </div>
                     </div>
-                    <button onclick="openRSVPModal()" class="mt-8 px-7 py-3 rounded-full border border-[#68181F]/40 bg-[#FDFAF3]/90 hover:bg-[#68181F] hover:text-[#FDFAF3] text-[#68181F] font-subtext font-bold text-[0.7rem] tracking-[0.2em] uppercase transition-all shadow-sm">
+                    <button onclick="openRSVPModal()" class="relative mt-8 px-7 py-3 rounded-full border-2 border-[#68181F]/70 bg-[#FDFAF3]/95 hover:bg-[#68181F] hover:text-[#FDFAF3] text-[#68181F] font-subtext font-bold text-[0.7rem] tracking-[0.2em] uppercase transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95 animate-rsvp-glow">
                         Send Blessings &amp; RSVP
                     </button>
                 </div>
