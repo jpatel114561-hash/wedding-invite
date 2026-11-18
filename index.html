@@ -221,13 +221,17 @@
             animation: gentleBounce 2.2s infinite ease-in-out;
         }
 
-        /* RSVP Button Pop-up Attention Animation */
-        @keyframes rsvpPop {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.08); box-shadow: 0 8px 20px rgba(104,24,31,0.25); }
+        /* Golden Glow Behind Map */
+        @keyframes mapGlow {
+            0%, 100% {
+                box-shadow: 0 0 14px rgba(200, 169, 126, 0.55), 0 0 28px rgba(140, 111, 74, 0.28);
+            }
+            50% {
+                box-shadow: 0 0 24px rgba(200, 169, 126, 0.9), 0 0 46px rgba(200, 169, 126, 0.45);
+            }
         }
-        .animate-rsvp-pop {
-            animation: rsvpPop 2s infinite ease-in-out;
+        .animate-map-glow {
+            animation: mapGlow 2.4s ease-in-out infinite;
         }
     </style>
 </head>
@@ -246,7 +250,7 @@
     <main class="invite-stage" id="invite-root">
         
         <!-- =========================================================================
-             SECTION 1: HERO (RESTORED LARGE TYPOGRAPHY + CORRECT PLACEMENT)
+             SECTION 1: HERO
              ========================================================================= -->
         <section class="parchment-section" id="sec-hero">
             <img id="bg-img-1" src="Watercolor Indian Wedding Feet on Parchment.png" alt="Hero" class="parchment-bg-img" onerror="handleImgFallback(this, 1)">
@@ -509,20 +513,21 @@
                         Near Lotus Plaza, Jaladarshan Township, Laxmipura, Gotri, Vadodara, Gujarat 390023
                     </p>
                     
-                    <div class="mt-5 w-full max-w-[280px] sm:max-w-[320px] h-[150px] p-1.5 bg-white rounded-2xl shadow-[0_12px_30px_rgba(0,0,0,0.08)] border border-[#8C6F4A]/30">
+                    <!-- Glowing Map Card with Full Clickable Overlay -->
+                    <div class="relative mt-5 w-full max-w-[280px] sm:max-w-[320px] h-[160px] p-1.5 bg-white rounded-2xl border-2 border-[#C8A97E] animate-map-glow">
                         <iframe id="view-map-iframe"
                             src="https://maps.google.com/maps?q=Shree+Hari+Farm+Near+Lotus+Plaza,+Jaladarshan+Township,+Laxmipura,+Gotri,+Vadodara,+Gujarat+390023&t=m&z=15&output=embed"
-                            class="w-full h-full rounded-[10px]"
+                            class="w-full h-full rounded-[10px] pointer-events-none"
                             style="border:0;"
                             allowfullscreen=""
                             loading="lazy">
                         </iframe>
+                        <a id="view-map-link" href="https://maps.google.com/?q=Shree+Hari+Farm+Near+Lotus+Plaza,+Jaladarshan+Township,+Laxmipura,+Gotri,+Vadodara,+Gujarat+390023" aria-label="Open Shree Hari Farm in Google Maps" class="absolute inset-0 z-20 rounded-2xl cursor-pointer"></a>
                     </div>
                     
-                    <!-- Fixed Hover Bug: Active class only to ensure one-tap works flawlessly on iOS -->
-                    <a id="view-map-link" href="https://maps.google.com/?q=Shree+Hari+Farm+Near+Lotus+Plaza,+Jaladarshan+Township,+Laxmipura,+Gotri,+Vadodara,+Gujarat+390023" target="_blank" rel="noopener noreferrer" class="mt-5 px-8 py-3.5 rounded-full bg-[#68181F] text-[#FDFAF3] font-subtext font-bold text-[0.75rem] tracking-[0.2em] uppercase shadow-[0_8px_20px_rgba(104,24,31,0.3)] flex items-center gap-2 active:scale-95 cursor-pointer">
-                        <i class="fa-solid fa-location-dot text-sm"></i>
-                        <span>GET DIRECTIONS</span>
+                    <a href="https://maps.google.com/?q=Shree+Hari+Farm+Near+Lotus+Plaza,+Jaladarshan+Township,+Laxmipura,+Gotri,+Vadodara,+Gujarat+390023" class="mt-5 px-6 py-3.5 rounded-full bg-gradient-to-r from-[#68181F] via-[#8A242D] to-[#68181F] text-[#FDFAF3] border border-[#C8A97E]/80 font-subtext font-bold text-[0.68rem] tracking-[0.14em] uppercase shadow-[0_6px_20px_rgba(104,24,31,0.35),0_0_14px_rgba(200,169,126,0.35)] flex items-center justify-center gap-2 cursor-pointer no-underline">
+                        <i class="fa-solid fa-location-dot text-sm text-[#FBF0D9] pointer-events-none"></i>
+                        <span class="pointer-events-none">TAP ON MAP TO GET DIRECTIONS</span>
                     </a>
 
                     <div class="mt-4 flex flex-col items-center animate-scroll-hint opacity-80">
@@ -568,9 +573,7 @@
                             <span class="sub-header-tracked text-[0.6rem] mt-1.5">SECONDS</span>
                         </div>
                     </div>
-                    
-                    <!-- ADDED: animate-rsvp-pop to give the button a little pop-up attention effect -->
-                    <button onclick="openRSVPModal()" class="mt-8 px-7 py-3 rounded-full border border-[#68181F]/40 bg-[#FDFAF3]/90 hover:bg-[#68181F] hover:text-[#FDFAF3] text-[#68181F] font-subtext font-bold text-[0.7rem] tracking-[0.2em] uppercase transition-all shadow-sm animate-rsvp-pop">
+                    <button onclick="openRSVPModal()" class="mt-8 px-7 py-3 rounded-full border border-[#68181F]/40 bg-[#FDFAF3]/90 hover:bg-[#68181F] hover:text-[#FDFAF3] text-[#68181F] font-subtext font-bold text-[0.7rem] tracking-[0.2em] uppercase transition-all shadow-sm">
                         Send Blessings &amp; RSVP
                     </button>
                 </div>
