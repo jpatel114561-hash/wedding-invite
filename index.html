@@ -179,6 +179,31 @@
             pointer-events: none;
         }
 
+        /* Ornamental Countdown Tiles */
+        .countdown-tile {
+            position: relative;
+            background: rgba(255, 255, 255, 0.86);
+            border: 1.5px solid #C8A97E;
+            border-radius: 10px 0 10px 0;
+            padding: 11px 4px 10px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 14px rgba(104, 24, 31, 0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            min-width: 0;
+        }
+        .countdown-tile::after {
+            content: '';
+            position: absolute;
+            inset: 2.5px;
+            border: 0.7px solid rgba(140, 111, 74, 0.35);
+            border-radius: 7.5px 0 7.5px 0;
+            pointer-events: none;
+        }
+
         /* ROYAL EVENT PLAQUE FOR WEDDING CEREMONY WITH FIREWORKS */
         .event-plaque-royal {
             position: relative;
@@ -604,25 +629,22 @@
                         <svg class="w-3.5 h-3.5 text-[#8C6F4A]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 20.5 C12 20.5 5 14 5 8.5 C5 6 7 4.5 9 4.5 C10.6 4.5 12 6 12 6 C12 6 13.4 4.5 15 4.5 C17 4.5 19 6 19 8.5 C19 14 12 20.5 12 20.5 Z"/></svg>
                         <span class="flex-1 h-[1px] bg-[#8C6F4A]/50"></span>
                     </div>
-                    <div class="mt-4 flex items-center justify-center gap-2 w-full max-w-[320px]">
-                        <div class="flex flex-col items-center flex-1">
-                            <span id="cd-days" class="font-heading text-center text-[2.2rem] text-[#68181F] font-bold">--</span>
-                            <span class="sub-header-tracked text-[0.6rem] mt-1.5">DAYS</span>
+                    <div class="mt-5 flex items-center justify-center gap-2 w-full max-w-[330px]">
+                        <div class="countdown-tile">
+                            <span id="cd-days" class="font-heading text-center text-[1.9rem] sm:text-[2.1rem] text-[#68181F] font-bold leading-none">--</span>
+                            <span class="sub-header-tracked text-[0.5rem] mt-1.5 tracking-[0.12em]">DAYS</span>
                         </div>
-                        <span class="font-heading text-xl text-[#8C6F4A] -mt-4">:</span>
-                        <div class="flex flex-col items-center flex-1">
-                            <span id="cd-hours" class="font-heading text-center text-[2.2rem] text-[#68181F] font-bold">--</span>
-                            <span class="sub-header-tracked text-[0.6rem] mt-1.5">HOURS</span>
+                        <div class="countdown-tile">
+                            <span id="cd-hours" class="font-heading text-center text-[1.9rem] sm:text-[2.1rem] text-[#68181F] font-bold leading-none">--</span>
+                            <span class="sub-header-tracked text-[0.5rem] mt-1.5 tracking-[0.12em]">HOURS</span>
                         </div>
-                        <span class="font-heading text-xl text-[#8C6F4A] -mt-4">:</span>
-                        <div class="flex flex-col items-center flex-1">
-                            <span id="cd-mins" class="font-heading text-center text-[2.2rem] text-[#68181F] font-bold">--</span>
-                            <span class="sub-header-tracked text-[0.6rem] mt-1.5">MINUTES</span>
+                        <div class="countdown-tile">
+                            <span id="cd-mins" class="font-heading text-center text-[1.9rem] sm:text-[2.1rem] text-[#68181F] font-bold leading-none">--</span>
+                            <span class="sub-header-tracked text-[0.5rem] mt-1.5 tracking-[0.12em]">MINUTES</span>
                         </div>
-                        <span class="font-heading text-xl text-[#8C6F4A] -mt-4">:</span>
-                        <div class="flex flex-col items-center flex-1">
-                            <span id="cd-secs" class="font-heading text-center text-[2.2rem] text-[#68181F] font-bold">--</span>
-                            <span class="sub-header-tracked text-[0.6rem] mt-1.5">SECONDS</span>
+                        <div class="countdown-tile">
+                            <span id="cd-secs" class="font-heading text-center text-[1.9rem] sm:text-[2.1rem] text-[#68181F] font-bold leading-none">--</span>
+                            <span class="sub-header-tracked text-[0.5rem] mt-1.5 tracking-[0.12em]">SECONDS</span>
                         </div>
                     </div>
                     <button onclick="openRSVPModal()" class="relative mt-8 px-7 py-3 rounded-full border-2 border-[#68181F]/70 bg-[#FDFAF3]/95 hover:bg-[#68181F] hover:text-[#FDFAF3] text-[#68181F] font-subtext font-bold text-[0.7rem] tracking-[0.2em] uppercase transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95 animate-rsvp-glow">
