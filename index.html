@@ -280,11 +280,11 @@
 <body>
 
     <!-- BACKGROUND AUDIO PLAYER -->
-    <audio id="bg-music" loop preload="auto" src="wedding-music.mp3" autoplay></audio>
+    <audio id="bg-music" loop preload="auto" src="wedding-music.mp3"></audio>
 
     <canvas id="magic-canvas"></canvas>
 
-    <!-- FLOATING CONTROLS (Made visible by default since the envelope is removed) -->
+    <!-- FLOATING CONTROLS -->
     <button id="audio-floating-btn" onclick="toggleMusic()" class="fixed bottom-5 right-5 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#68181F] text-[#FBF0D9] shadow-[0_6px_20px_rgba(104,24,31,0.55)] flex items-center justify-center hover:scale-105 active:scale-95 transition-transform border border-[#C8A97E]/40 cursor-pointer">
         <i id="speaker-icon" class="fa-solid fa-volume-xmark text-lg opacity-75"></i>
     </button>
@@ -298,7 +298,6 @@
             <img id="bg-img-1" src="Watercolor Indian Wedding Feet on Parchment.png" alt="Hero" class="parchment-bg-img" onerror="handleImgFallback(this, 1)">
             
             <div class="section-content-layer top-[41%] px-6">
-                <!-- Staggered waterfalls apply only inside this perfectly positioned div -->
                 <div class="w-full flex flex-col items-center">
                     
                     <p class="font-subtext text-center text-[0.62rem] sm:text-[0.7rem] tracking-[0.25em] text-[#68181F] font-bold uppercase mb-1 fade-up delay-100">|| Om Shree Ganeshay Namah ||</p>
@@ -353,7 +352,7 @@
         </section>
 
         <!-- =========================================================================
-             SECTION 2: AUSPICIOUS INVITATION (RESTORED TO PERFECT ALIGNMENT)
+             SECTION 2: AUSPICIOUS INVITATION
              ========================================================================= -->
         <section class="parchment-section" id="sec-invitation">
             <img id="bg-img-2" src="Traditional Indian Puja Arrangement.png" alt="Puja" class="parchment-bg-img" onerror="handleImgFallback(this, 2)">
@@ -573,9 +572,10 @@
                         </iframe>
                     </div>
                     
-                    <a href="https://maps.google.com/?q=Shree+Hari+Farm+Near+Lotus+Plaza,+Jaladarshan+Township,+Laxmipura,+Gotri,+Vadodara,+Gujarat+390023" target="_blank" rel="noopener noreferrer" class="mt-5 px-8 py-3.5 rounded-full bg-[#68181F] text-[#FDFAF3] font-subtext font-bold text-[0.75rem] tracking-[0.2em] uppercase shadow-[0_8px_20px_rgba(104,24,31,0.3)] flex items-center gap-2 transition-transform active:scale-95 cursor-pointer no-underline">
-                        <i class="fa-solid fa-location-dot text-sm"></i>
-                        <span>GET DIRECTIONS</span>
+                    <!-- Fixed Hover Bug: Active class only to ensure one-tap works flawlessly on iOS -->
+                    <a id="view-map-link" href="https://maps.google.com/?q=Shree+Hari+Farm+Near+Lotus+Plaza,+Jaladarshan+Township,+Laxmipura,+Gotri,+Vadodara,+Gujarat+390023" target="_blank" rel="noopener noreferrer" class="mt-5 px-8 py-3.5 rounded-full bg-[#68181F] text-[#FDFAF3] font-subtext font-bold text-[0.75rem] tracking-[0.2em] uppercase shadow-[0_8px_20px_rgba(104,24,31,0.3)] flex items-center gap-2 cursor-pointer no-underline block">
+                        <i class="fa-solid fa-location-dot text-sm pointer-events-none"></i>
+                        <span class="pointer-events-none">GET DIRECTIONS</span>
                     </a>
 
                     <div class="mt-4 flex flex-col items-center animate-scroll-hint opacity-80">
@@ -621,8 +621,8 @@
                             <span class="sub-header-tracked text-[0.6rem] mt-1.5">SECONDS</span>
                         </div>
                     </div>
-                    <button onclick="openRSVPModal()" class="mt-8 px-7 py-3 rounded-full border border-[#68181F]/40 bg-[#FDFAF3]/90 hover:bg-[#68181F] hover:text-[#FDFAF3] text-[#68181F] font-subtext font-bold text-[0.7rem] tracking-[0.2em] uppercase transition-all animate-pulse-glow">
-                        Send Blessings <span class="shimmer-gold">&amp;</span> RSVP
+                    <button onclick="openRSVPModal()" class="mt-8 px-7 py-3 rounded-full border border-[#68181F]/40 bg-[#FDFAF3]/90 hover:bg-[#68181F] hover:text-[#FDFAF3] text-[#68181F] font-subtext font-bold text-[0.7rem] tracking-[0.2em] uppercase transition-all shadow-sm">
+                        Send Blessings &amp; RSVP
                     </button>
                 </div>
             </div>
@@ -693,20 +693,6 @@
             imgEl.src = "data:image/svg+xml;utf8," + encodeURIComponent(svgParchment);
         }
 
-        function toggleMusic() {
-            const music = document.getElementById('bg-music');
-            const icon = document.getElementById('speaker-icon');
-            
-            if (!music.paused) {
-                music.pause();
-                icon.className = 'fa-solid fa-volume-xmark text-lg opacity-75';
-            } else {
-                music.play().then(() => {
-                    icon.className = 'fa-solid fa-volume-high text-lg animate-pulse';
-                }).catch(e => console.log("Audio play failed:", e));
-            }
-        }
-
         function openRSVPModal() {
             const m = document.getElementById('rsvp-modal');
             m.classList.remove('hidden'); m.classList.add('flex');
@@ -744,6 +730,49 @@
             } catch(e) {}
         }
         setInterval(updateCountdownClock, 1000);
+
+        // --- INTELLIGENT AUDIO AUTOPLAY LOGIC ---
+        let musicStarted = false;
+        let userManuallyPaused = false;
+        
+        function attemptAutoplay() {
+            if (musicStarted || userManuallyPaused) return;
+            const music = document.getElementById('bg-music');
+            const icon = document.getElementById('speaker-icon');
+            
+            music.play().then(() => {
+                musicStarted = true;
+                icon.className = 'fa-solid fa-volume-high text-lg animate-pulse';
+                
+                const events = ['click', 'touchstart', 'scroll', 'mousemove', 'keydown'];
+                events.forEach(e => document.removeEventListener(e, attemptAutoplay));
+            }).catch((e) => {
+                console.log("Browser blocking audio until user interacts. Awaiting tap/scroll.");
+            });
+        }
+
+        function toggleMusic() {
+            const music = document.getElementById('bg-music');
+            const icon = document.getElementById('speaker-icon');
+            
+            if (!music.paused) {
+                music.pause();
+                musicStarted = false;
+                userManuallyPaused = true; 
+                icon.className = 'fa-solid fa-volume-xmark text-lg opacity-75';
+            } else {
+                userManuallyPaused = false; 
+                music.play().then(() => {
+                    musicStarted = true;
+                    icon.className = 'fa-solid fa-volume-high text-lg animate-pulse';
+                });
+            }
+        }
+
+        // Add aggressive interaction unlockers to force playback the moment the user touches the screen
+        const startEvents = ['click', 'touchstart', 'scroll', 'mousemove', 'keydown'];
+        startEvents.forEach(e => document.addEventListener(e, attemptAutoplay, { passive: true }));
+
 
         // --- HD MAGICAL CSS ENGINE (Petals + Glowing Gold Stardust) ---
         const canvas = document.getElementById('magic-canvas');
@@ -851,6 +880,9 @@
                 initMagic();
                 drawMagic();
                 
+                // Attempt to play music as soon as the page loads
+                attemptAutoplay();
+                
                 window.addEventListener('resize', () => {
                     resizeCanvas();
                 });
@@ -859,34 +891,6 @@
                     entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
                 }, { threshold: 0.12 });
                 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-                
-                // AUDIO AUTOPLAY LOGIC
-                const music = document.getElementById('bg-music');
-                const icon = document.getElementById('speaker-icon');
-                let audioUnlocked = false;
-
-                function playMusicOnInteraction() {
-                    if (audioUnlocked) return;
-                    music.play().then(() => {
-                        audioUnlocked = true;
-                        icon.className = 'fa-solid fa-volume-high text-lg animate-pulse';
-                        // Remove listeners once successfully playing
-                        window.removeEventListener('scroll', playMusicOnInteraction);
-                        window.removeEventListener('touchstart', playMusicOnInteraction);
-                        window.removeEventListener('click', playMusicOnInteraction);
-                    }).catch((e) => {
-                        console.log("Autoplay blocked. Waiting for user interaction.");
-                    });
-                }
-
-                // Attempt to play immediately on load
-                playMusicOnInteraction();
-
-                // If blocked, wait for the user to scroll, tap, or slide
-                window.addEventListener('scroll', playMusicOnInteraction, { passive: true });
-                window.addEventListener('touchstart', playMusicOnInteraction, { passive: true });
-                window.addEventListener('click', playMusicOnInteraction, { passive: true });
-                
             } catch (e) {}
         };
     </script>
