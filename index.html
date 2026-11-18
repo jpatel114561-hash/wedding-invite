@@ -220,6 +220,15 @@
         .animate-scroll-hint {
             animation: gentleBounce 2.2s infinite ease-in-out;
         }
+
+        /* RSVP Button Pop-up Attention Animation */
+        @keyframes rsvpPop {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); box-shadow: 0 8px 20px rgba(104,24,31,0.25); }
+        }
+        .animate-rsvp-pop {
+            animation: rsvpPop 2s infinite ease-in-out;
+        }
     </style>
 </head>
 <body>
@@ -237,7 +246,7 @@
     <main class="invite-stage" id="invite-root">
         
         <!-- =========================================================================
-             SECTION 1: HERO
+             SECTION 1: HERO (RESTORED LARGE TYPOGRAPHY + CORRECT PLACEMENT)
              ========================================================================= -->
         <section class="parchment-section" id="sec-hero">
             <img id="bg-img-1" src="Watercolor Indian Wedding Feet on Parchment.png" alt="Hero" class="parchment-bg-img" onerror="handleImgFallback(this, 1)">
@@ -275,7 +284,7 @@
                         <span class="h-8 w-[1px] bg-[#8C6F4A]/70"></span>
                         <span id="view-year" class="font-subtext text-sm tracking-[0.25em] text-[#68181F] font-bold uppercase w-14 text-left">2026</span>
                     </div>
-                    <p id="view-time" class="sub-header-tracked text-center text-[0.75rem] text-[#8C6F4A] mt-1.5 font-bold">7:00 PM ONWARDS</p>
+                    <p id="view-time" class="sub-header-tracked text-center text-[0.75rem] text-[#8C6F4A] mt-1.5 font-bold">6:30 PM ONWARDS</p>
                     
                     <div class="mt-3 mb-1 text-[#8C6F4A]"><i class="fa-solid fa-location-dot text-lg"></i></div>
                     <h2 id="view-hero-venue" class="main-maroon-title text-center text-[1.25rem] sm:text-[1.45rem] font-bold tracking-[0.1em] uppercase">SHREE HARI FARM</h2>
@@ -510,8 +519,8 @@
                         </iframe>
                     </div>
                     
-                    <!-- Definitive fix for iOS Safari double-tap link bugs: Removed target blank and active hover classes -->
-                    <a id="view-map-link" href="https://maps.google.com/?q=Shree+Hari+Farm+Near+Lotus+Plaza,+Jaladarshan+Township,+Laxmipura,+Gotri,+Vadodara,+Gujarat+390023" class="mt-5 px-8 py-3.5 rounded-full bg-[#68181F] text-[#FDFAF3] font-subtext font-bold text-[0.75rem] tracking-[0.2em] uppercase shadow-[0_8px_20px_rgba(104,24,31,0.3)] flex items-center justify-center gap-2 cursor-pointer">
+                    <!-- Fixed Hover Bug: Active class only to ensure one-tap works flawlessly on iOS -->
+                    <a id="view-map-link" href="https://maps.google.com/?q=Shree+Hari+Farm+Near+Lotus+Plaza,+Jaladarshan+Township,+Laxmipura,+Gotri,+Vadodara,+Gujarat+390023" target="_blank" rel="noopener noreferrer" class="mt-5 px-8 py-3.5 rounded-full bg-[#68181F] text-[#FDFAF3] font-subtext font-bold text-[0.75rem] tracking-[0.2em] uppercase shadow-[0_8px_20px_rgba(104,24,31,0.3)] flex items-center gap-2 active:scale-95 cursor-pointer">
                         <i class="fa-solid fa-location-dot text-sm"></i>
                         <span>GET DIRECTIONS</span>
                     </a>
@@ -559,7 +568,9 @@
                             <span class="sub-header-tracked text-[0.6rem] mt-1.5">SECONDS</span>
                         </div>
                     </div>
-                    <button onclick="openRSVPModal()" class="mt-8 px-7 py-3 rounded-full border border-[#68181F]/40 bg-[#FDFAF3]/90 hover:bg-[#68181F] hover:text-[#FDFAF3] text-[#68181F] font-subtext font-bold text-[0.7rem] tracking-[0.2em] uppercase transition-all shadow-sm">
+                    
+                    <!-- ADDED: animate-rsvp-pop to give the button a little pop-up attention effect -->
+                    <button onclick="openRSVPModal()" class="mt-8 px-7 py-3 rounded-full border border-[#68181F]/40 bg-[#FDFAF3]/90 hover:bg-[#68181F] hover:text-[#FDFAF3] text-[#68181F] font-subtext font-bold text-[0.7rem] tracking-[0.2em] uppercase transition-all shadow-sm animate-rsvp-pop">
                         Send Blessings &amp; RSVP
                     </button>
                 </div>
